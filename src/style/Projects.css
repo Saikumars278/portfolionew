@@ -1,0 +1,175 @@
+.projectsSection {
+  background: #070e24;
+  padding: 40px 8% 100px; /* Reduced top to close gap from Skills */
+  color: white;
+}
+
+.projectsContainer {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.projectsSection h2 {
+  max-width: 780px;
+  font-size: 42px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.projectsIntro {
+  max-width: 730px;
+  color: #cfd3e3;
+  font-size: 17px;
+  line-height: 1.8;
+  margin-bottom: 55px;
+}
+
+.projectsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.projectCard {
+  position: relative;
+  padding: 36px;
+  min-height: 390px;
+  border-radius: 20px;
+  background: linear-gradient(
+    145deg,
+    rgba(212, 175, 55, 0.14),
+    rgba(255, 255, 255, 0.04)
+  );
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  overflow: hidden;
+  transition: 0.3s ease;
+}
+
+.projectCard::before {
+  content: "";
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.25), transparent 70%);
+  right: -45px;
+  top: -45px;
+}
+
+.projectCard:hover {
+  transform: translateY(-10px);
+  border-color: #d4af37;
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.4);
+}
+
+.projectNumber {
+  color: rgba(212, 175, 55, 0.35);
+  font-size: 54px;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.projectCategory {
+  color: #d4af37;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+
+.projectCard h3 {
+  color: #ffffff;
+  font-size: 26px;
+  margin-bottom: 16px;
+}
+
+.projectDesc {
+  color: #d6d9e6;
+  line-height: 1.7;
+  margin-bottom: 22px;
+}
+
+.projectTech {
+  color: #f3d675;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+/* Base button style */
+.projectBtn {
+  display: inline-block;
+  text-decoration: none;
+  padding: 11px 22px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+}
+
+/* Gold filled button - Admin Panel */
+.projectBtnGold {
+  background: linear-gradient(135deg, #d4af37, #f5dc7a);
+  color: #071126;
+  border: 1px solid transparent;
+}
+
+.projectBtnGold:hover {
+  background: linear-gradient(135deg, #f5dc7a, #ffffff);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(212, 175, 55, 0.4);
+}
+
+/* Dark transparent outline button - User Panel */
+.projectBtnOutline {
+  background: transparent;
+  color: #d4af37;
+  border: 1px solid #d4af37;
+}
+
+.projectBtnOutline:hover {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: #f5dc7a;
+  color: #f5dc7a;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(212, 175, 55, 0.15);
+}
+
+/* Dual button group: side by side on desktop */
+.projectBtnGroup {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+
+@media (max-width: 900px) {
+  .projectsSection {
+    padding: 40px 5% 60px;
+  }
+  .projectsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .projectsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .projectsSection h2 {
+    font-size: 32px;
+  }
+
+  /* Stack buttons vertically on mobile */
+  .projectBtnGroup {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .projectBtnGroup .projectBtn {
+    width: 100%;
+    text-align: center;
+  }
+}
+

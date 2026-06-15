@@ -1,0 +1,104 @@
+.footer {
+  background: linear-gradient(180deg, rgba(5, 11, 31, 0.93) 0%, rgba(2, 4, 12, 0.97) 100%), url("../images/footer_bg.png") no-repeat center/cover;
+  background-attachment: fixed;
+  padding: 40px 8% 30px;
+  color: white;
+  border-top: 1px solid;
+  border-image: linear-gradient(90deg, rgba(212, 175, 55, 0.2), rgba(0, 240, 255, 0.2)) 1;
+  text-align: center;
+}
+
+.footerContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.footerInfo {
+  font-size: 15px;
+  color: #cfd3e3;
+  margin: 0;
+}
+
+.footerInfo .highlightName {
+  color: #d4af37;
+  font-weight: 700;
+}
+
+.footerInfo .roleText {
+  color: #ffffff;
+  margin-left: 6px;
+}
+
+/* Social icons container */
+.footerSocials {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.socialBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(5, 11, 31, 0.8);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  color: #cfd3e3;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.socialBtn.github:hover {
+  color: #d4af37;
+  border-color: #d4af37;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+  transform: translateY(-2px);
+}
+
+.socialBtn.linkedin:hover {
+  color: #00f0ff;
+  border-color: #00f0ff;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.socialBtn.email:hover {
+  color: #00f0ff;
+  border-color: #00f0ff;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.socialBtn svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.copyrightText {
+  font-size: 13.5px;
+  color: #6b7280;
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .footerInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: center;
+  }
+  .footerInfo .separator {
+    display: none;
+  }
+  .footerInfo .roleText {
+    margin-left: 0;
+  }
+}
