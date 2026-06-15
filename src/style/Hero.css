@@ -18,7 +18,7 @@ body {
   min-height: 100dvh;
   background:
     linear-gradient(to right, rgba(5, 11, 31, 0.92) 35%, rgba(5, 11, 31, 0.45) 65%, rgba(5, 11, 31, 0.15) 100%),
-    url("../images/developer_hero_bg.png");
+    url("../images/bg6.png");
   background-size: cover;
   background-position: center right;
   display: flex;
@@ -175,8 +175,13 @@ h2 {
 }
 
 @keyframes scrollSkills {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 /* ══════════════════════════════════════
@@ -189,7 +194,8 @@ h2 {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding: 80px 22px 32px;   /* 80px clears 52px navbar + 28px gap */
+    padding: 80px 22px 32px;
+    /* 80px clears 52px navbar + 28px gap */
     background:
       linear-gradient(to bottom, rgba(5, 11, 31, 0.9) 0%, rgba(5, 11, 31, 0.82) 55%, rgba(5, 11, 31, 0.97) 100%),
       url("../images/developer_hero_bg.png");
@@ -260,10 +266,14 @@ h2 {
     position: relative;
   }
 
-  .skillSlider::-webkit-scrollbar { display: none; }
+  .skillSlider::-webkit-scrollbar {
+    display: none;
+  }
 
   .skillSlider::before,
-  .skillSlider::after { width: 18px; }
+  .skillSlider::after {
+    width: 18px;
+  }
 
   .skillTrack {
     flex-wrap: nowrap;
@@ -276,7 +286,9 @@ h2 {
     font-size: 12px;
   }
 
-  .duplicateSkill { display: inline-flex; }
+  .duplicateSkill {
+    display: inline-flex;
+  }
 }
 
 /* ══════════════════════════════════════
@@ -289,7 +301,8 @@ h2 {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding: 76px 18px 28px;   /* 76px clears 52px navbar + 24px gap */
+    padding: 76px 18px 28px;
+    /* 76px clears 52px navbar + 24px gap */
     background:
       linear-gradient(to bottom, rgba(5, 11, 31, 0.92) 0%, rgba(5, 11, 31, 0.85) 55%, rgba(5, 11, 31, 0.98) 100%),
       url("../images/developer_hero_bg.png");
@@ -364,10 +377,14 @@ h2 {
     position: relative;
   }
 
-  .skillSlider::-webkit-scrollbar { display: none; }
+  .skillSlider::-webkit-scrollbar {
+    display: none;
+  }
 
   .skillSlider::before,
-  .skillSlider::after { width: 10px; }
+  .skillSlider::after {
+    width: 10px;
+  }
 
   .skillTrack {
     flex-wrap: nowrap;
@@ -380,5 +397,7 @@ h2 {
     font-size: 11px;
   }
 
-  .duplicateSkill { display: inline-flex; }
+  .duplicateSkill {
+    display: inline-flex;
+  }
 }
