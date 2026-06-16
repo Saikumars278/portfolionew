@@ -1,7 +1,15 @@
 .about {
-  background: #070e24;
-  padding: 50px 8% 50px; /* Reduced bottom padding to close gap with Skills */
+  background:
+  
+    url("../images/aboutbg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding: 50px 8% 50px;
   color: white;
+  position: relative;
+  overflow: hidden;
 }
 
 .aboutContainer {
@@ -33,7 +41,6 @@
   margin-bottom: 36px;
 }
 
-/* Modern Grid for Quick Stats */
 .aboutStatsGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -42,8 +49,8 @@
 }
 
 .statCard {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(212, 175, 55, 0.15);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(212, 175, 55, 0.18);
   border-radius: 12px;
   padding: 20px;
   transition: all 0.3s ease;
@@ -52,7 +59,7 @@
 .statCard:hover {
   border-color: #d4af37;
   transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(212, 175, 55, 0.05);
+  box-shadow: 0 10px 20px rgba(212, 175, 55, 0.08);
 }
 
 .statCard h3 {
@@ -68,25 +75,31 @@
   margin: 0;
 }
 
-/* Modern Box for Quick Facts on Right Side */
 .aboutBox {
-  background: linear-gradient(145deg, rgba(212, 175, 55, 0.08), rgba(0, 240, 255, 0.03));
-  border: 1px solid rgba(212, 175, 55, 0.25);
+  background: linear-gradient(
+    145deg,
+    rgba(212, 175, 55, 0.12),
+    rgba(0, 240, 255, 0.05)
+  );
+  border: 1px solid rgba(212, 175, 55, 0.28);
   border-radius: 20px;
   padding: 38px;
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
   position: relative;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
 }
 
 .aboutBox::before {
-  content: '';
+  content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   border-radius: 20px;
-  background: radial-gradient(circle at top right, rgba(0, 240, 255, 0.1), transparent 60%);
+  background: radial-gradient(
+    circle at top right,
+    rgba(0, 240, 255, 0.12),
+    transparent 60%
+  );
   pointer-events: none;
 }
 
@@ -110,7 +123,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 16px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .factItem:last-child {
@@ -136,8 +149,114 @@
   border-color: rgba(0, 240, 255, 0.2);
 }
 
+/* Animation */
+.about .sectionTag,
+.about h2,
+.aboutText,
+.aboutStatsGrid,
+.aboutBox {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.about.show .sectionTag {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.1s;
+}
+
+.about.show h2 {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.25s;
+}
+
+.about.show .aboutText {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.4s;
+}
+
+.about.show .aboutStatsGrid {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.55s;
+}
+
+.about.show .aboutBox {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.7s;
+}
+
+.statCard {
+  opacity: 0;
+  transform: translateY(25px) scale(0.96);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.about.show .statCard {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.about.show .statCard:nth-child(1) {
+  transition-delay: 0.65s;
+}
+
+.about.show .statCard:nth-child(2) {
+  transition-delay: 0.78s;
+}
+
+.about.show .statCard:nth-child(3) {
+  transition-delay: 0.91s;
+}
+
+.about.show .statCard:nth-child(4) {
+  transition-delay: 1.04s;
+}
+
+.factItem {
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.about.show .factItem {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.about.show .factItem:nth-child(1) {
+  transition-delay: 0.85s;
+}
+
+.about.show .factItem:nth-child(2) {
+  transition-delay: 0.98s;
+}
+
+.about.show .factItem:nth-child(3) {
+  transition-delay: 1.11s;
+}
+
+.about.show .factItem:nth-child(4) {
+  transition-delay: 1.24s;
+}
+
+.aboutBox:hover {
+  transform: translateY(-6px);
+  border-color: rgba(212, 175, 55, 0.45);
+  box-shadow:
+    0 28px 70px rgba(0, 0, 0, 0.45),
+    0 0 25px rgba(212, 175, 55, 0.12);
+}
+
+/* Mobile */
 @media (max-width: 768px) {
   .about {
+    background-attachment: scroll;
+    background-position: center top;
     padding: 40px 5% 40px;
   }
 
@@ -149,12 +268,32 @@
   .about h2 {
     font-size: 32px;
   }
-  
+
   .aboutStatsGrid {
     grid-template-columns: 1fr;
   }
 
   .aboutBox {
     padding: 22px 18px;
+  }
+
+  .factItem {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about .sectionTag,
+  .about h2,
+  .aboutText,
+  .aboutStatsGrid,
+  .aboutBox,
+  .statCard,
+  .factItem {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }

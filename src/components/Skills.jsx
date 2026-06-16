@@ -1,6 +1,36 @@
+import { useEffect, useRef } from "react";
 import "../style/Skills.css";
 
 function Skills() {
+  const skillsRef = useRef(null);
+
+  useEffect(() => {
+    const skillsSection = skillsRef.current;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          }
+        });
+      },
+      {
+        threshold: 0.2
+      }
+    );
+
+    if (skillsSection) {
+      observer.observe(skillsSection);
+    }
+
+    return () => {
+      if (skillsSection) {
+        observer.unobserve(skillsSection);
+      }
+    };
+  }, []);
+
   const skillCategories = [
     {
       title: "Frontend",
@@ -17,7 +47,7 @@ function Skills() {
         { name: "CSS", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
         { name: "Bootstrap", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" },
         { name: "JavaScript", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
-        { name: "React", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+        { name: "React", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" }
       ]
     },
     {
@@ -37,7 +67,7 @@ function Skills() {
         { name: "DRF", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" },
         { name: "Django ORM", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" },
         { name: "Authentication", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
-        { name: "API Integration", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" },
+        { name: "API Integration", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" }
       ]
     },
     {
@@ -56,7 +86,7 @@ function Skills() {
         { name: "SQLite", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" },
         { name: "Database Design", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
         { name: "SQL Queries", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
-        { name: "CRUD Operations", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" },
+        { name: "CRUD Operations", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" }
       ]
     },
     {
@@ -75,13 +105,13 @@ function Skills() {
         { name: "Postman", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" },
         { name: "Vercel", img: "https://assets.vercel.com/image/upload/v1588805858/repositories/vercel/logo.png" },
         { name: "Render", img: "https://images.g2crowd.com/uploads/product/image/social_proof_image/social_proof_image/8a0bb6e0bcc13d45af9e9ce4de63b0e2.png" },
-        { name: "Supabase", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" },
+        { name: "Supabase", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" }
       ]
     }
   ];
 
   return (
-    <section className="skillsSection" id="skills">
+    <section className="skillsSection" id="skills" ref={skillsRef}>
       <div className="skillsContainer">
         <p className="sectionTag">Technical Skills</p>
         <h2>Technical Skills</h2>
@@ -96,6 +126,7 @@ function Skills() {
                 {category.icon}
                 <h3>{category.title}</h3>
               </div>
+
               <div className="skillsList">
                 {category.skills.map((skill, sIndex) => (
                   <span className="skillBadge" key={sIndex}>
@@ -103,7 +134,9 @@ function Skills() {
                       src={skill.img}
                       alt={skill.name}
                       className="skillIcon"
-                      onError={(e) => { e.target.style.display = "none"; }}
+                      onError={(e) => {
+                        e.target.style.display = "none";
+                      }}
                     />
                     {skill.name}
                   </span>

@@ -1,36 +1,85 @@
 .footer {
-  background: linear-gradient(180deg, rgba(5, 11, 31, 0.93) 0%, rgba(2, 4, 12, 0.97) 100%), url("../images/footer_bg.png") no-repeat center/cover;
+  position: relative;
+  background:
+  
+    url("../images/fotterbg1.png") no-repeat center/cover;
   background-attachment: fixed;
-  padding: 40px 8% 30px;
+  padding: 70px 8% 34px;
   color: white;
-  border-top: 1px solid;
-  border-image: linear-gradient(90deg, rgba(212, 175, 55, 0.2), rgba(0, 240, 255, 0.2)) 1;
   text-align: center;
+  overflow: hidden;
+  border-top: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+/* Premium glow layer */
+.footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 18% 25%, rgba(212, 175, 55, 0.18), transparent 32%),
+    radial-gradient(circle at 82% 35%, rgba(0, 240, 255, 0.14), transparent 34%);
+  pointer-events: none;
+}
+
+/* Top neon line */
+.footer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 8%;
+  right: 8%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #d4af37,
+    #00f0ff,
+    transparent
+  );
+  box-shadow: 0 0 18px rgba(212, 175, 55, 0.5);
 }
 
 .footerContainer {
-  max-width: 800px;
+  position: relative;
+  z-index: 2;
+  max-width: 860px;
   margin: 0 auto;
+  padding: 32px 28px;
+  border-radius: 28px;
+  background: rgba(5, 11, 31, 0.58);
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 18px;
 }
 
 .footerInfo {
-  font-size: 15px;
+  font-size: 16px;
   color: #cfd3e3;
   margin: 0;
+  letter-spacing: 0.3px;
 }
 
 .footerInfo .highlightName {
-  color: #d4af37;
-  font-weight: 700;
+  color: #f5dc7a;
+  font-weight: 800;
+}
+
+.footerInfo .separator {
+  color: rgba(212, 175, 55, 0.55);
+  margin: 0 10px;
 }
 
 .footerInfo .roleText {
   color: #ffffff;
-  margin-left: 6px;
+  font-weight: 500;
 }
 
 /* Social icons container */
@@ -38,54 +87,93 @@
   display: flex;
   justify-content: center;
   gap: 16px;
-  margin-bottom: 8px;
+  margin: 4px 0 8px;
 }
 
 .socialBtn {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
-  background: rgba(5, 11, 31, 0.8);
-  border: 1px solid rgba(212, 175, 55, 0.25);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(212, 175, 55, 0.28);
   color: #cfd3e3;
   transition: all 0.3s ease;
   text-decoration: none;
+  overflow: hidden;
 }
 
-.socialBtn.github:hover {
-  color: #d4af37;
-  border-color: #d4af37;
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
-  transform: translateY(-2px);
-}
-
-.socialBtn.linkedin:hover {
-  color: #00f0ff;
-  border-color: #00f0ff;
-  box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
-  transform: translateY(-2px);
-}
-
-.socialBtn.email:hover {
-  color: #00f0ff;
-  border-color: #00f0ff;
-  box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
-  transform: translateY(-2px);
+.socialBtn::before {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  background: rgba(5, 11, 31, 0.75);
+  z-index: 0;
 }
 
 .socialBtn svg {
+  position: relative;
+  z-index: 1;
   width: 20px;
   height: 20px;
-  fill: currentColor;
+  fill: none;
+}
+
+.socialBtn:hover {
+  transform: translateY(-4px) scale(1.04);
+}
+
+.socialBtn.github:hover {
+  color: #f5dc7a;
+  border-color: #d4af37;
+  box-shadow: 0 0 24px rgba(212, 175, 55, 0.45);
+}
+
+.socialBtn.linkedin:hover,
+.socialBtn.email:hover {
+  color: #00f0ff;
+  border-color: #00f0ff;
+  box-shadow: 0 0 24px rgba(0, 240, 255, 0.38);
 }
 
 .copyrightText {
   font-size: 13.5px;
-  color: #6b7280;
+  color: #8b93a7;
   margin: 0;
+}
+
+/* Soft fade animation */
+.footerContainer {
+  animation: footerFadeUp 0.9s ease forwards;
+}
+
+@keyframes footerFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    background-attachment: scroll;
+    padding: 54px 5% 28px;
+  }
+
+  .footerContainer {
+    padding: 28px 20px;
+    border-radius: 22px;
+  }
 }
 
 @media (max-width: 600px) {
@@ -94,11 +182,19 @@
     flex-direction: column;
     gap: 6px;
     align-items: center;
+    font-size: 15px;
   }
+
   .footerInfo .separator {
     display: none;
   }
-  .footerInfo .roleText {
-    margin-left: 0;
+
+  .footerSocials {
+    gap: 13px;
+  }
+
+  .socialBtn {
+    width: 43px;
+    height: 43px;
   }
 }
