@@ -1,7 +1,5 @@
 .about {
-  background:
-  
-    url("../images/aboutbg.png");
+  background-image: url("../images/aboutbg.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -10,6 +8,26 @@
   color: white;
   position: relative;
   overflow: hidden;
+}
+
+/* Dark overlay so text stays readable over the bg image */
+.about::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(5, 11, 31, 0.82) 0%,
+    rgba(10, 18, 45, 0.75) 50%,
+    rgba(5, 11, 31, 0.88) 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.about .aboutContainer {
+  position: relative;
+  z-index: 1;
 }
 
 .aboutContainer {
@@ -76,11 +94,9 @@
 }
 
 .aboutBox {
-  background: linear-gradient(
-    145deg,
-    rgba(212, 175, 55, 0.12),
-    rgba(0, 240, 255, 0.05)
-  );
+  background: linear-gradient(145deg,
+      rgba(212, 175, 55, 0.12),
+      rgba(0, 240, 255, 0.05));
   border: 1px solid rgba(212, 175, 55, 0.28);
   border-radius: 20px;
   padding: 38px;
@@ -95,11 +111,9 @@
   position: absolute;
   inset: 0;
   border-radius: 20px;
-  background: radial-gradient(
-    circle at top right,
-    rgba(0, 240, 255, 0.12),
-    transparent 60%
-  );
+  background: radial-gradient(circle at top right,
+      rgba(0, 240, 255, 0.12),
+      transparent 60%);
   pointer-events: none;
 }
 
@@ -255,6 +269,7 @@
 /* Mobile */
 @media (max-width: 768px) {
   .about {
+    background-image: url("../images/aboutbg.png");
     background-attachment: scroll;
     background-position: center top;
     padding: 40px 5% 40px;
@@ -285,6 +300,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .about .sectionTag,
   .about h2,
   .aboutText,

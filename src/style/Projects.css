@@ -33,7 +33,6 @@
 .projectCard {
   position: relative;
   padding: 36px;
-  min-height: 390px;
   border-radius: 20px;
   background: linear-gradient(
     145deg,
@@ -41,8 +40,10 @@
     rgba(255, 255, 255, 0.04)
   );
   border: 1px solid rgba(212, 175, 55, 0.28);
-  overflow: hidden;
+  overflow: visible;
   transition: 0.3s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .projectCard::before {
@@ -86,6 +87,7 @@
   color: #d6d9e6;
   line-height: 1.7;
   margin-bottom: 22px;
+  flex: 1;
 }
 
 .projectTech {
@@ -93,6 +95,12 @@
   font-size: 14px;
   line-height: 1.6;
   margin-bottom: 28px;
+}
+
+/* Push buttons to the bottom of every card */
+.projectBtnWrapper,
+.projectDualSection {
+  margin-top: auto;
 }
 
 /* Base button style */
@@ -140,6 +148,139 @@
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+}
+
+/* Button used as toggle (reset default button styles) */
+.projectBtnGroup .projectBtn {
+  cursor: pointer;
+  font-family: inherit;
+  border: none;
+  outline: none;
+}
+
+/* Active state - button pressed */
+.activeCredBtn {
+  transform: translateY(2px);
+  box-shadow: none !important;
+  opacity: 0.85;
+}
+
+/* Credentials reveal section wrapper */
+.projectDualSection {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Credential panel card — floats over grid, doesn't push card height */
+.credPanel {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  right: 0;
+  z-index: 99;
+  border-radius: 14px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: credFadeIn 0.25s ease;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+@keyframes credFadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Gold variant - Admin */
+.credPanelGold {
+  background: rgba(212, 175, 55, 0.10);
+  border: 1px solid rgba(212, 175, 55, 0.40);
+  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.12);
+}
+
+/* Cyan variant - User */
+.credPanelCyan {
+  background: rgba(0, 240, 255, 0.07);
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  box-shadow: 0 8px 24px rgba(0, 240, 255, 0.10);
+}
+
+.credPanelTitle {
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #d4af37;
+  margin: 0 0 4px;
+}
+
+.credPanelCyan .credPanelTitle {
+  color: #00f0ff;
+}
+
+.credRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding-bottom: 8px;
+}
+
+.credRow:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.credLabel {
+  color: #cfd3e3;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.credValue {
+  font-size: 13.5px;
+  font-weight: 700;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.5px;
+  padding: 3px 12px;
+  border-radius: 20px;
+  background: rgba(212, 175, 55, 0.15);
+  border: 1px solid rgba(212, 175, 55, 0.30);
+  color: #f5dc7a;
+  user-select: all;
+}
+
+.credPanelCyan .credValue {
+  background: rgba(0, 240, 255, 0.12);
+  border-color: rgba(0, 240, 255, 0.30);
+  color: #00f0ff;
+}
+
+.credLink {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #d4af37;
+  text-decoration: none;
+  transition: color 0.2s ease, letter-spacing 0.2s ease;
+}
+
+.credLink:hover {
+  color: #f5dc7a;
+  letter-spacing: 0.5px;
+}
+
+.credLinkCyan {
+  color: #00f0ff;
+}
+
+.credLinkCyan:hover {
+  color: #7fffff;
 }
 
 

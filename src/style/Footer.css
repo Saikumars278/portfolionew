@@ -1,8 +1,9 @@
 .footer {
   position: relative;
-  background:
-  
-    url("../images/fotterbg1.png") no-repeat center/cover;
+  background-image: url("../images/fotterbg1.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   background-attachment: fixed;
   padding: 70px 8% 34px;
   color: white;
