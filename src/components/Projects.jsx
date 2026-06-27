@@ -6,80 +6,88 @@ function Projects() {
   const credRef = useRef(null);
 
   // Close credential panel on any click outside it
-  useEffect(() => {
-    if (!activeCredential) return;
-    const handleOutsideClick = (e) => {
-      if (credRef.current && !credRef.current.contains(e.target)) {
-        setActiveCredential(null);
-      }
-    };
-    document.addEventListener("mousedown", handleOutsideClick);
-    return () => document.removeEventListener("mousedown", handleOutsideClick);
-  }, [activeCredential]);
+useEffect(() => {
+  const handleOutsideClick = (e) => {
+    if (activeCredential && !e.target.closest(".projectDualSection")) {
+      setActiveCredential(null);
+    }
+  };
+
+  document.addEventListener("mousedown", handleOutsideClick);
+
+  return () => {
+    document.removeEventListener("mousedown", handleOutsideClick);
+  };
+}, [activeCredential]);
 
   const projectsList = [
-    {
-      number: "01",
-      category: "Full Stack Development",
-      title: "Attendance Management System",
-      desc: "An end-to-end attendance system featuring authentication, attendance tracking, admin dashboard, and full CRUD operations.",
-      features: ["JWT Authentication", "Admin & User Dashboards", "Attendance CRUD", "REST API Integration"],
-      tech: "React.js, Django, Django REST Framework, MySQL",
-      dualButtons: true,
-      adminLink: "https://github.com/Saikumars278",
-      userLink: "https://github.com/Saikumars278",
-      adminCreds: { username: "admin", password: "admin@123" },
-      userCreds: { username: "user", password: "user@123" },
+  {
+    number: "01",
+    category: "Full Stack Development",
+    title: "Attendance Management System",
+    desc: "An end-to-end attendance system featuring authentication, attendance tracking, admin dashboard, and full CRUD operations.",
+    features: [
+      "JWT Authentication",
+      "Admin & User Dashboards",
+      "Attendance CRUD",
+      "REST API Integration",
+    ],
+    tech: "React.js, Django, Django REST Framework, MySQL",
+    dualButtons: true,
+    adminLink: "https://github.com/Saikumars278",
+    userLink: "https://github.com/Saikumars278",
+    adminCreds: {
+      username: "admin",
+      password: "admin@123",
     },
-    {
-      number: "02",
-      category: "Construction Business Website",
-      title: "MML Construction",
-      desc: "Designed and developed a professional construction company website with service sections, project highlights, company information, and a responsive modern layout.",
-      features: ["Service Showcase", "Project Highlights", "Responsive Design", "Contact Form"],
-      tech: "React.js, CSS, Responsive Design, Vercel",
-      link: "https://github.com/Saikumars278"
+    userCreds: {
+      username: "user",
+      password: "user@123",
     },
-    {
-      number: "03",
-      category: "Logistics Management Platform",
-      title: "FIT Logistics Portal",
-      desc: "Developed a logistics portal to manage customer profiles, service requests, quotation details, shipment inquiries, and admin-side operations dynamically.",
-      features: ["Customer Profiles", "Quotation Management", "Shipment Tracking", "Admin Operations"],
-      tech: "React.js, Django, Django REST Framework, MySQL, Supabase, Vercel, Render",
-      link: "https://github.com/Saikumars278"
-    },
-    {
-      number: "04",
-      category: "Healthcare Management System",
-      title: "Hospital Management System",
-      desc: "Built a hospital management platform for handling patient records, doctor details, appointment scheduling, admin management, and basic hospital workflow operations.",
-      features: ["Patient Records", "Doctor Management", "Appointment Scheduling", "Admin Dashboard"],
-      tech: "React.js, Django, Django REST Framework, MySQL",
-      link: "https://github.com/Saikumars278"
-    },
-    {
-      number: "05",
-      category: "Portal & Job Management",
-      title: "Brolichi Job Portal",
-      desc: "Designed and built an admin dashboard to handle user/job applications and publish live job postings dynamically.",
-      features: ["Live Job Postings", "Application Management", "User & Admin Roles", "Dynamic Dashboard"],
-      tech: "React.js, Django, MySQL, Supabase, Vercel, Render",
-      dualButtons: true,
-      adminLink: "https://github.com/Saikumars278",
-      userLink: "https://github.com/Saikumars278",
-      adminCreds: { username: "admin", password: "admin@123" },
-      userCreds: { username: "user", password: "user@123" },
-    },
-    {
-      number: "06",
-      category: "AI Chatbot Application",
-      title: "Smart Chatbot System",
-      desc: "Built an interactive chatbot application that can respond to user queries, provide instant support, and improve user engagement through a clean chat interface.",
-      features: ["AI Responses", "Real-time Chat UI", "OpenAI Integration", "Session Management"],
-      tech: "React.js, Python, Django, REST API, OpenAI API",
-      link: "https://github.com/Saikumars278"
-    }
+  },
+
+  {
+    number: "02",
+    category: "Healthcare Management System",
+    title: "Hospital Management System",
+    desc: "Built a hospital management platform for handling patient records, doctor details, appointment scheduling, admin management, and complete hospital workflow operations.",
+    features: [
+      "Patient Records",
+      "Doctor Management",
+      "Appointment Scheduling",
+      "Admin Dashboard",
+    ],
+    tech: "React.js, Django, Django REST Framework, MySQL",
+    link: "https://github.com/Saikumars278",
+  },
+
+  {
+  number: "03",
+  category: "AI Chatbot Application",
+  title: "Smart Chatbot System",
+  desc: "Built an interactive AI chatbot application that responds to user queries, provides instant support, and delivers a clean real-time chat experience.",
+  features: [
+    "AI Responses",
+    "Real-time Chat UI",
+    "OpenAI Integration",
+    "Session Management",
+  ],
+  tech: "React.js, Python, Django, REST API, GroqCloud API",
+  dualButtons: true,
+
+  adminLink: "https://your-chatbot-admin-url.com",
+  userLink: "https://your-chatbot-user-url.com",
+
+  adminCreds: {
+    username: "admin",
+    password: "admin@123",
+  },
+
+  userCreds: {
+    username: "user",
+    password: "user@123",
+  },
+},
   ];
 
   return (

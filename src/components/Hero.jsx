@@ -1,4 +1,18 @@
 import "../style/Hero.css";
+import {
+  FaPython,
+  FaReact,
+  FaJsSquare,
+  FaGitAlt,
+} from "react-icons/fa";
+
+import {
+  SiDjango,
+  SiMysql,
+  SiSupabase,
+  SiVercel,
+  SiRender,
+} from "react-icons/si";
 
 function Hero() {
   return (
@@ -25,31 +39,35 @@ function Hero() {
           </a>
         </div>
 
-        <div className="skillSlider">
-          <div className="skillTrack">
-            <span>Python</span>
-            <span>Django</span>
-            <span>Django REST Framework</span>
-            <span>React</span>
-            <span>JavaScript</span>
-            <span>MySQL</span>
-            <span>Supabase</span>
-            <span>Vercel</span>
-            <span>Render</span>
-            <span>GitHub</span>
+       <div className="skillSlider">
+  <div className="skillTrack">
 
-            <span className="duplicateSkill">Python</span>
-            <span className="duplicateSkill">Django</span>
-            <span className="duplicateSkill">Django REST Framework</span>
-            <span className="duplicateSkill">React</span>
-            <span className="duplicateSkill">JavaScript</span>
-            <span className="duplicateSkill">MySQL</span>
-            <span className="duplicateSkill">Supabase</span>
-            <span className="duplicateSkill">Vercel</span>
-            <span className="duplicateSkill">Render</span>
-            <span className="duplicateSkill">GitHub</span>
-          </div>
-        </div>
+    <span><FaPython /> Python</span>
+    <span><SiDjango /> Django</span>
+    <span><SiDjango /> Django REST Framework</span>
+    <span><FaReact /> React</span>
+    <span><FaJsSquare /> JavaScript</span>
+    <span><SiMysql /> MySQL</span>
+    <span><SiSupabase /> Supabase</span>
+    <span><SiVercel /> Vercel</span>
+    <span><SiRender /> Render</span>
+    <span><FaGitAlt /> GitHub</span>
+
+    {/* Duplicate for infinite scrolling */}
+
+    <span className="duplicateSkill"><FaPython /> Python</span>
+    <span className="duplicateSkill"><SiDjango /> Django</span>
+    <span className="duplicateSkill"><SiDjango /> Django REST Framework</span>
+    <span className="duplicateSkill"><FaReact /> React</span>
+    <span className="duplicateSkill"><FaJsSquare /> JavaScript</span>
+    <span className="duplicateSkill"><SiMysql /> MySQL</span>
+    <span className="duplicateSkill"><SiSupabase /> Supabase</span>
+    <span className="duplicateSkill"><SiVercel /> Vercel</span>
+    <span className="duplicateSkill"><SiRender /> Render</span>
+    <span className="duplicateSkill"><FaGitAlt /> GitHub</span>
+
+  </div>
+</div>
       </div>
     </section>
   );

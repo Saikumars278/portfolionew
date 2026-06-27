@@ -131,6 +131,7 @@ body {
   width: 100%;
   max-width: 680px;
   margin-top: 38px;
+  padding: 8px 0;
   overflow: hidden;
   position: relative;
 }
@@ -308,4 +309,37 @@ body {
     opacity: 1;
     transform: none;
   }
+}
+.skillTrack span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.skillTrack span svg {
+  font-size: 20px;
+}
+
+.skillTrack span:hover {
+  color: #ffd700;
+  transform: translateY(-2px);
+  transition: 0.3s;
+}
+
+
+
+@media (max-width:480px){
+
+  .hero{
+    padding:130px 18px 40px;
+  }
+
+  
+
 }
