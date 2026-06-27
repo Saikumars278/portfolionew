@@ -15,20 +15,11 @@ function Skills() {
           }
         });
       },
-      {
-        threshold: 0.2
-      }
+      { threshold: 0.2 }
     );
 
-    if (skillsSection) {
-      observer.observe(skillsSection);
-    }
-
-    return () => {
-      if (skillsSection) {
-        observer.unobserve(skillsSection);
-      }
-    };
+    if (skillsSection) observer.observe(skillsSection);
+    return () => { if (skillsSection) observer.unobserve(skillsSection); };
   }, []);
 
   const skillCategories = [
@@ -43,12 +34,12 @@ function Skills() {
         </svg>
       ),
       skills: [
-        { name: "HTML", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
-        { name: "CSS", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
-        { name: "Bootstrap", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" },
-        { name: "JavaScript", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
-        { name: "React", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" }
-      ]
+        { name: "HTML",        img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
+        { name: "CSS",         img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
+        { name: "JavaScript",  img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+        { name: "React",       img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+        { name: "Bootstrap",   img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" },
+      ],
     },
     {
       title: "Backend",
@@ -61,17 +52,14 @@ function Skills() {
         </svg>
       ),
       skills: [
-        { name: "Python", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
-        { name: "Django", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" },
-        { name: "REST API", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" },
-        { name: "DRF", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" },
-        { name: "Django ORM", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" },
-        { name: "Authentication", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
-        { name: "API Integration", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" }
-      ]
+        { name: "Python",   img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+        { name: "Django",   img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" },
+        { name: "DRF",      img: "https://cdn.simpleicons.org/django/092E20" },
+        { name: "REST API", img: "https://cdn.simpleicons.org/fastapi/009688" },
+      ],
     },
     {
-      title: "Database",
+      title: "Database & Cloud",
       className: "database",
       icon: (
         <svg className="skillCardIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -81,13 +69,11 @@ function Skills() {
         </svg>
       ),
       skills: [
-        { name: "MySQL", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
-        { name: "PHPMyAdmin", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" },
-        { name: "SQLite", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" },
-        { name: "Database Design", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
-        { name: "SQL Queries", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
-        { name: "CRUD Operations", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" }
-      ]
+        { name: "MySQL",    img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
+        { name: "Supabase", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" },
+        { name: "Vercel",   img: "https://cdn.simpleicons.org/vercel/ffffff" },
+        { name: "Render",   img: "https://cdn.simpleicons.org/render/46E3B7" },
+      ],
     },
     {
       title: "Tools & IDEs",
@@ -99,15 +85,11 @@ function Skills() {
       ),
       skills: [
         { name: "VS Code", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" },
-        { name: "Sublime Text", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sublime/sublime-original.svg" },
-        { name: "Git", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
-        { name: "GitHub", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
+        { name: "Git",     img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+        { name: "GitHub",  img: "https://cdn.simpleicons.org/github/ffffff" },
         { name: "Postman", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" },
-        { name: "Vercel", img: "https://assets.vercel.com/image/upload/v1588805858/repositories/vercel/logo.png" },
-        { name: "Render", img: "https://images.g2crowd.com/uploads/product/image/social_proof_image/social_proof_image/8a0bb6e0bcc13d45af9e9ce4de63b0e2.png" },
-        { name: "Supabase", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" }
-      ]
-    }
+      ],
+    },
   ];
 
   return (
@@ -130,14 +112,14 @@ function Skills() {
               <div className="skillsList">
                 {category.skills.map((skill, sIndex) => (
                   <span className="skillBadge" key={sIndex}>
-                    <img
-                      src={skill.img}
-                      alt={skill.name}
-                      className="skillIcon"
-                      onError={(e) => {
-                        e.target.style.display = "none";
-                      }}
-                    />
+                    <span className="skillIconWrap">
+                      <img
+                        src={skill.img}
+                        alt={skill.name}
+                        className="skillIcon"
+                        onError={(e) => { e.target.style.display = "none"; }}
+                      />
+                    </span>
                     {skill.name}
                   </span>
                 ))}

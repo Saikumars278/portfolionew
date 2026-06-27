@@ -1,5 +1,5 @@
 .about {
- 
+
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -15,12 +15,10 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(5, 11, 31, 0.82) 0%,
-    rgba(10, 18, 45, 0.75) 50%,
-    rgba(5, 11, 31, 0.88) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(5, 11, 31, 0.82) 0%,
+      rgba(10, 18, 45, 0.75) 50%,
+      rgba(5, 11, 31, 0.88) 100%);
   pointer-events: none;
   z-index: 0;
 }

@@ -181,6 +181,7 @@
   .educationSection {
     padding: 40px 5% 40px;
   }
+
   .educationGrid {
     grid-template-columns: 1fr;
     gap: 32px;

@@ -1,0 +1,133 @@
+.experienceSection {
+  background: #050b1f; /* Same as Skills */
+  padding: 40px 8% 40px;
+  color: white;
+}
+
+.experienceContainer {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.experienceSection h2 {
+  font-size: 42px;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  color: #ffffff;
+}
+
+.experienceIntro {
+  max-width: 720px;
+  color: #cfd3e3;
+  font-size: 17px;
+  line-height: 1.8;
+  margin-bottom: 50px;
+}
+
+/* Timeline container */
+.experienceTimeline {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  padding-left: 20px;
+  border-left: 1px solid rgba(212, 175, 55, 0.2); /* Gold border line */
+}
+
+.expItem {
+  position: relative;
+}
+
+/* Timeline dot */
+.expDot {
+  position: absolute;
+  left: -25.5px;
+  top: 18px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #d4af37; /* Gold dot */
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+}
+
+/* Experience Card */
+.expCard {
+  background: rgba(5, 11, 31, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 26px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.expCard:hover {
+  border-color: rgba(212, 175, 55, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3), 0 0 15px rgba(212, 175, 55, 0.1);
+}
+
+.expDuration {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 4px;
+  background: rgba(212, 175, 55, 0.15);
+  color: #d4af37;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+.expRole {
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+
+.expCompany {
+  font-size: 15px;
+  color: #a0a6b5;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.expResponsibilities {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.expResponsibilities li {
+  font-size: 15.5px;
+  color: #cfd3e3;
+  line-height: 1.6;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.expResponsibilities li::before {
+  content: "▹";
+  position: absolute;
+  left: 0;
+  top: 0px;
+  color: #d4af37;
+  font-size: 18px;
+}
+
+.expResponsibilities li:last-child {
+  margin-bottom: 0;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .experienceSection {
+    padding: 40px 5% 40px;
+  }
+
+  .experienceSection h2 {
+    font-size: 32px;
+  }
+}

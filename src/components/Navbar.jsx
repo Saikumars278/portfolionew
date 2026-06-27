@@ -1,43 +1,48 @@
 import { useState, useEffect, useRef } from "react";
 import "../style/Navbar.css";
 
+const menuItems = [
+  { label: "Home", id: "home" },
+  { label: "About", id: "about" },
+  { label: "Experience", id: "experience" },
+  { label: "Skills", id: "skills" },
+  { label: "Projects", id: "projects" },
+  { label: "Education", id: "education" },
+  { label: "Contact", id: "contact" },
+];
+
 function Navbar() {
   const [activeSection, setActiveSection] = useState("home");
   const [isOpen, setIsOpen] = useState(false);
   const navbarRef = useRef(null);
 
-  const menuItems = [
-    { label: "Home", id: "home" },
-    { label: "About", id: "about" },
-    { label: "Skills", id: "skills" },
-      { label: "Projects", id: "projects" },
-    { label: "Education", id: "education" },
-    { label: "Contact", id: "contact" }
-  ];
-
   useEffect(() => {
     const handleScroll = () => {
-      setIsOpen(false);
-
-      const scrollPosition = window.scrollY + 160;
+      const scrollPosition = window.scrollY + 150;
+      let currentSection = "home";
 
       for (const item of menuItems) {
-        const el = document.getElementById(item.id);
-
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(item.id);
-            break;
+        const section = document.getElementById(item.id);
+        if (section) {
+          if (scrollPosition >= section.offsetTop) {
+            currentSection = item.id;
           }
         }
       }
+
+      // If scrolled to the absolute bottom, select the last item
+      if (window.innerHeight + Math.round(window.scrollY) >= document.body.offsetHeight - 50) {
+        currentSection = menuItems[menuItems.length - 1].id;
+      }
+
+      setActiveSection(currentSection);
     };
 
     const handleOutsideClick = (e) => {
-      if (navbarRef.current && !navbarRef.current.contains(e.target)) {
+      if (
+        navbarRef.current &&
+        !navbarRef.current.contains(e.target)
+      ) {
         setIsOpen(false);
       }
     };
@@ -51,50 +56,61 @@ function Navbar() {
     };
   }, []);
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   const handleNavClick = (e, id) => {
     e.preventDefault();
-
     setIsOpen(false);
     setActiveSection(id);
 
-    const el = document.getElementById(id);
+    const section = document.getElementById(id);
 
-    if (el) {
-      const offset = 100;
-      const elementPosition =
-        el.getBoundingClientRect().top + window.pageYOffset;
-      const offsetPosition = elementPosition - offset;
+    if (section) {
+      const navbarHeight = 80;
 
       window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
+        top: section.offsetTop - navbarHeight,
+        behavior: "smooth",
       });
     }
   };
 
   return (
-    <nav className="navbar-container" ref={navbarRef}>
-      <div className="navbar-backdrop"></div>
-
-      <div className="navbar-capsule">
-        <div className="navbar-inner">
+    <>
+      {/* Full-screen overlay when mobile menu is open */}
+      <div
+        className={`navbar-overlay ${isOpen ? "open" : ""}`}
+        onClick={() => setIsOpen(false)}
+      />
+      <nav className="navbar-container" ref={navbarRef}>
+        <div className="navbar-backdrop"></div>
+        <div className="navbar-capsule">
+          <div className="navbar-inner">
           <a
             href="#home"
-            onClick={(e) => handleNavClick(e, "home")}
             className="navbar-logo"
+            onClick={(e) => handleNavClick(e, "home")}
           >
             SAIKUMAR<span>.</span>
           </a>
 
           <button
-            type="button"
             className={`navbar-toggle ${isOpen ? "open" : ""}`}
             onClick={(e) => {
               e.stopPropagation();
-              setIsOpen((prev) => !prev);
+              setIsOpen(!isOpen);
             }}
-            aria-label="Toggle menu"
-            aria-expanded={isOpen}
+            aria-label="Toggle Menu"
           >
             <span></span>
             <span></span>
@@ -103,13 +119,17 @@ function Navbar() {
 
           <ul className={`navbar-menu ${isOpen ? "open" : ""}`}>
             {menuItems.map((item) => (
-              <li key={item.id} className="navbar-item">
+              <li key={item.id}>
                 <a
                   href={`#${item.id}`}
-                  onClick={(e) => handleNavClick(e, item.id)}
-                  className={`navbar-link ${
-                    activeSection === item.id ? "active" : ""
-                  }`}
+                  className={
+                    activeSection === item.id
+                      ? "navbar-link active"
+                      : "navbar-link"
+                  }
+                  onClick={(e) =>
+                    handleNavClick(e, item.id)
+                  }
                 >
                   {item.label}
                 </a>
@@ -119,6 +139,7 @@ function Navbar() {
         </div>
       </div>
     </nav>
+    </>
   );
 }
 
