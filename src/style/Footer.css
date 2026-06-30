@@ -63,6 +63,15 @@
   flex-direction: column;
   align-items: center;
   gap: 22px;
+
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.footer.show .footerContainer {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .footerInfo {
@@ -70,6 +79,16 @@
   color: #cfd3e3;
   margin: 0;
   letter-spacing: 0.3px;
+
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.footer.show .footerInfo {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s;
 }
 
 .footerInfo .highlightName {
@@ -107,9 +126,29 @@
     linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
   border: 1px solid rgba(212, 175, 55, 0.28);
   color: #cfd3e3;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, opacity 0.6s ease;
   text-decoration: none;
   overflow: hidden;
+
+  opacity: 0;
+  transform: translateY(18px) scale(0.85);
+}
+
+.footer.show .socialBtn {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.footer.show .socialBtn.github {
+  transition-delay: 0.35s, 0.35s, 0.3s, 0.3s, 0.3s, 0.35s;
+}
+
+.footer.show .socialBtn.linkedin {
+  transition-delay: 0.46s, 0.46s, 0.3s, 0.3s, 0.3s, 0.46s;
+}
+
+.footer.show .socialBtn.email {
+  transition-delay: 0.57s, 0.57s, 0.3s, 0.3s, 0.3s, 0.57s;
 }
 
 .socialBtn::before {
@@ -150,23 +189,16 @@
   font-size: 13.5px;
   color: #8b93a7;
   margin: 0;
+
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-/* Soft fade animation */
-.footerContainer {
-  animation: footerFadeUp 0.9s ease forwards;
-}
-
-@keyframes footerFadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(26px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.footer.show .copyrightText {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.7s;
 }
 
 @media (max-width: 768px) {
@@ -201,5 +233,16 @@
   .socialBtn {
     width: 43px;
     height: 43px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footerContainer,
+  .footerInfo,
+  .socialBtn,
+  .copyrightText {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }

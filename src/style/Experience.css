@@ -1,12 +1,21 @@
 .experienceSection {
-  background: #050b1f; /* Same as Skills */
+  background: #050b1f;
   padding: 40px 8% 40px;
   color: white;
+  overflow: hidden;
 }
 
 .experienceContainer {
   max-width: 1200px;
   margin: auto;
+}
+
+.experienceSection .sectionTag {
+  color: #d4af37;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  font-size: 14px;
 }
 
 .experienceSection h2 {
@@ -31,7 +40,7 @@
   gap: 20px;
   position: relative;
   padding-left: 20px;
-  border-left: 1px solid rgba(212, 175, 55, 0.2); /* Gold border line */
+  border-left: 1px solid rgba(212, 175, 55, 0.2);
 }
 
 .expItem {
@@ -46,7 +55,7 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #d4af37; /* Gold dot */
+  background: #d4af37;
   box-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
 }
 
@@ -121,6 +130,119 @@
   margin-bottom: 0;
 }
 
+.expSkills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.skillTag {
+  background: rgba(0, 255, 255, 0.12);
+  color: cyan;
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* ===== Animation ===== */
+.experienceSection .sectionTag,
+.experienceSection h2,
+.experienceIntro,
+.experienceTimeline {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.experienceSection.show .sectionTag {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.1s;
+}
+
+.experienceSection.show h2 {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.25s;
+}
+
+.experienceSection.show .experienceIntro {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.4s;
+}
+
+.experienceSection.show .experienceTimeline {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.5s;
+}
+
+/* Each timeline item cascades in individually */
+.expItem {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.experienceSection.show .expItem {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.experienceSection.show .expItem:nth-child(1) { transition-delay: 0.6s; }
+.experienceSection.show .expItem:nth-child(2) { transition-delay: 0.75s; }
+.experienceSection.show .expItem:nth-child(3) { transition-delay: 0.9s; }
+.experienceSection.show .expItem:nth-child(4) { transition-delay: 1.05s; }
+.experienceSection.show .expItem:nth-child(5) { transition-delay: 1.2s; }
+.experienceSection.show .expItem:nth-child(6) { transition-delay: 1.35s; }
+
+/* Dot pulses in slightly after the card */
+.expDot {
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.experienceSection.show .expItem .expDot {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.experienceSection.show .expItem:nth-child(1) .expDot { transition-delay: 0.75s; }
+.experienceSection.show .expItem:nth-child(2) .expDot { transition-delay: 0.9s; }
+.experienceSection.show .expItem:nth-child(3) .expDot { transition-delay: 1.05s; }
+.experienceSection.show .expItem:nth-child(4) .expDot { transition-delay: 1.2s; }
+.experienceSection.show .expItem:nth-child(5) .expDot { transition-delay: 1.35s; }
+.experienceSection.show .expItem:nth-child(6) .expDot { transition-delay: 1.5s; }
+
+/* Skill tags pop in last, staggered */
+.skillTag {
+  opacity: 0;
+  transform: translateY(15px) scale(0.9);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.experienceSection.show .skillTag {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.experienceSection.show .skillTag:nth-child(1) { transition-delay: 0.65s; }
+.experienceSection.show .skillTag:nth-child(2) { transition-delay: 0.73s; }
+.experienceSection.show .skillTag:nth-child(3) { transition-delay: 0.81s; }
+.experienceSection.show .skillTag:nth-child(4) { transition-delay: 0.89s; }
+.experienceSection.show .skillTag:nth-child(5) { transition-delay: 0.97s; }
+.experienceSection.show .skillTag:nth-child(6) { transition-delay: 1.05s; }
+.experienceSection.show .skillTag:nth-child(7) { transition-delay: 1.13s; }
+.experienceSection.show .skillTag:nth-child(8) { transition-delay: 1.21s; }
+.experienceSection.show .skillTag:nth-child(9) { transition-delay: 1.29s; }
+.experienceSection.show .skillTag:nth-child(10) { transition-delay: 1.37s; }
+.experienceSection.show .skillTag:nth-child(11) { transition-delay: 1.45s; }
+
 /* Mobile responsive */
 @media (max-width: 768px) {
   .experienceSection {
@@ -129,5 +251,19 @@
 
   .experienceSection h2 {
     font-size: 32px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .experienceSection .sectionTag,
+  .experienceSection h2,
+  .experienceIntro,
+  .experienceTimeline,
+  .expItem,
+  .expDot,
+  .skillTag {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }

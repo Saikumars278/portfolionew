@@ -1,6 +1,28 @@
+import { useEffect, useRef, useState } from "react";
 import "../style/Education.css";
 
 function Education() {
+  const sectionRef = useRef(null);
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShow(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   const education = [
     {
       type: "education",
@@ -27,7 +49,11 @@ function Education() {
   };
 
   return (
-    <section className="educationSection" id="education">
+    <section
+      className={`educationSection ${show ? "show" : ""}`}
+      id="education"
+      ref={sectionRef}
+    >
       <div className="educationContainer">
         <p className="sectionTag">Education & Certification</p>
         <h2>Education & Certification</h2>

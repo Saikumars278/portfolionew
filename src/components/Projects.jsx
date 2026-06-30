@@ -5,6 +5,28 @@ function Projects() {
   const [activeCredential, setActiveCredential] = useState(null);
   const credRef = useRef(null);
 
+  const sectionRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const node = sectionRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(node);
+
+    return () => observer.disconnect();
+  }, []);
+
   // Close credential panel on any click outside it
 useEffect(() => {
   const handleOutsideClick = (e) => {
@@ -91,7 +113,11 @@ useEffect(() => {
   ];
 
   return (
-    <section className="projectsSection" id="projects">
+    <section
+      className={`projectsSection${isVisible ? " show" : ""}`}
+      id="projects"
+      ref={sectionRef}
+    >
       <div className="projectsContainer">
         <p className="sectionTag">Featured Work</p>
 
@@ -105,7 +131,11 @@ useEffect(() => {
 
         <div className="projectsGrid">
           {projectsList.map((project, index) => (
-            <div className="projectCard" key={index}>
+            <div
+              className="projectCard"
+              key={index}
+              style={{ "--cardIndex": index }}
+            >
               <div className="projectNumber">{project.number}</div>
 
               <div className="projectCategory">{project.category}</div>

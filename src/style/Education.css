@@ -2,11 +2,20 @@
   background: #070e24;
   padding: 40px 8% 40px;
   color: white;
+  overflow: hidden;
 }
 
 .educationContainer {
   max-width: 1200px;
   margin: auto;
+}
+
+.educationSection .sectionTag {
+  color: #d4af37;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  font-size: 14px;
 }
 
 .educationSection h2 {
@@ -31,9 +40,6 @@
   gap: 40px;
   align-items: start;
 }
-
-/* Group heading with icon */
-.educationGroup {}
 
 .groupTitle {
   display: flex;
@@ -177,6 +183,79 @@
   letter-spacing: 0.5px;
 }
 
+/* ===== Entrance Animation ===== */
+.educationSection .sectionTag,
+.educationSection h2,
+.educationIntro {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.educationSection.show .sectionTag {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.1s;
+}
+
+.educationSection.show h2 {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.25s;
+}
+
+.educationSection.show .educationIntro {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.4s;
+}
+
+/* Each column slides in from opposite sides */
+.educationGroup {
+  opacity: 0;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.educationGroup:nth-child(1) {
+  transform: translateX(-30px);
+}
+
+.educationGroup:nth-child(2) {
+  transform: translateX(30px);
+}
+
+.educationSection.show .educationGroup {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.educationSection.show .educationGroup:nth-child(1) {
+  transition-delay: 0.5s;
+}
+
+.educationSection.show .educationGroup:nth-child(2) {
+  transition-delay: 0.65s;
+}
+
+/* Timeline items and cert card cascade in */
+.timelineItem,
+.certCard {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.educationSection.show .timelineItem,
+.educationSection.show .certCard {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.educationSection.show .timelineItem:nth-child(1) { transition-delay: 0.65s; }
+.educationSection.show .timelineItem:nth-child(2) { transition-delay: 0.78s; }
+.educationSection.show .timelineItem:nth-child(3) { transition-delay: 0.91s; }
+.educationSection.show .certCard { transition-delay: 0.8s; }
+
 @media (max-width: 768px) {
   .educationSection {
     padding: 40px 5% 40px;
@@ -189,5 +268,18 @@
 
   .educationSection h2 {
     font-size: 32px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .educationSection .sectionTag,
+  .educationSection h2,
+  .educationIntro,
+  .educationGroup,
+  .timelineItem,
+  .certCard {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }

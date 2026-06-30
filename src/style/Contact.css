@@ -3,6 +3,8 @@
   padding: 40px 8% 80px;
   color: white;
   border-top: 1px solid rgba(212, 175, 55, 0.1);
+  position: relative;
+  overflow: hidden;
 }
 
 .contactContainer {
@@ -53,7 +55,7 @@
 
 .contactInfoCard:hover {
   border-color: #00f0ff;
-  transform: translateY(-3px);
+  transform: translateY(-3px) scale(1.02);
   box-shadow: 0 10px 25px rgba(0, 240, 255, 0.08);
 }
 
@@ -68,6 +70,12 @@
   justify-content: center;
   color: #00f0ff;
   flex-shrink: 0;
+  transition: transform 0.4s ease, background 0.4s ease;
+}
+
+.contactInfoCard:hover .contactIcon {
+  transform: rotate(-8deg) scale(1.12);
+  background: rgba(0, 240, 255, 0.18);
 }
 
 .contactDetails h3 {
@@ -101,6 +109,7 @@
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
   position: relative;
   overflow: hidden;
+  transition: all 0.3s ease;
 }
 
 .contactFormCard::before {
@@ -113,6 +122,14 @@
   border-radius: 20px;
   background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.08), transparent 60%);
   pointer-events: none;
+}
+
+.contactFormCard:hover {
+  transform: translateY(-6px);
+  border-color: rgba(212, 175, 55, 0.45);
+  box-shadow:
+    0 28px 70px rgba(0, 0, 0, 0.45),
+    0 0 25px rgba(212, 175, 55, 0.12);
 }
 
 .contactFormCard h3 {
@@ -161,6 +178,7 @@
   border-color: #d4af37;
   background: rgba(255, 255, 255, 0.06);
   box-shadow: 0 0 10px rgba(212, 175, 55, 0.15);
+  transform: translateY(-1px);
 }
 
 .formTextarea {
@@ -173,45 +191,168 @@
   text-decoration: none;
   color: #071126;
   background: linear-gradient(135deg, #d4af37, #f5dc7a);
+  background-size: 200% auto;
   padding: 15px 30px;
   border: none;
   border-radius: 30px;
   font-weight: 600;
   font-size: 16px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease, background-position 0.5s ease;
   box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
 }
 
 .submitBtn:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+  background-position: right center;
 }
 
 .submitBtn:active {
-  transform: translateY(0);
+  transform: translateY(0) scale(0.98);
+}
+
+.successMessage,
+.errorMessage {
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 15px;
+  margin-top: 15px;
+  text-align: center;
+  animation: popIn 0.4s ease forwards;
 }
 
 .successMessage {
-  padding: 12px;
   background: rgba(16, 185, 129, 0.1);
   border: 1px solid rgba(16, 185, 129, 0.3);
   color: #10b981;
-  border-radius: 8px;
-  font-size: 15px;
-  margin-top: 15px;
-  text-align: center;
 }
 
 .errorMessage {
-  padding: 12px;
   background: rgba(239, 68, 68, 0.1);
   border: 1px solid rgba(239, 68, 68, 0.3);
   color: #ef4444;
-  border-radius: 8px;
-  font-size: 15px;
-  margin-top: 15px;
-  text-align: center;
+  animation: popIn 0.4s ease forwards, shake 0.4s ease 0.4s;
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+/* Scroll-triggered animation (matches .about pattern) */
+.contactSection .sectionTag,
+.contactSection h2,
+.contactIntro,
+.contactInfoColumn,
+.contactFormCard {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.contactSection.show .sectionTag {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.1s;
+}
+
+.contactSection.show h2 {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.25s;
+}
+
+.contactSection.show .contactIntro {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.4s;
+}
+
+.contactSection.show .contactInfoColumn {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.55s;
+}
+
+.contactSection.show .contactFormCard {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.55s;
+}
+
+.contactInfoCard {
+  opacity: 0;
+  transform: translateX(-25px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.contactSection.show .contactInfoCard {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.contactSection.show .contactInfoCard:nth-child(1) {
+  transition-delay: 0.7s;
+}
+
+.contactSection.show .contactInfoCard:nth-child(2) {
+  transition-delay: 0.83s;
+}
+
+.contactSection.show .contactInfoCard:nth-child(3) {
+  transition-delay: 0.96s;
+}
+
+.formGroup {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.contactSection.show .formGroup {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.contactSection.show .formGroup:nth-of-type(1) {
+  transition-delay: 0.7s;
+}
+
+.contactSection.show .formGroup:nth-of-type(2) {
+  transition-delay: 0.8s;
+}
+
+.contactSection.show .formGroup:nth-of-type(3) {
+  transition-delay: 0.9s;
+}
+
+.contactSection.show .formGroup:nth-of-type(4) {
+  transition-delay: 1s;
+}
+
+.submitBtn {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease, background-position 0.5s ease;
+}
+
+.contactSection.show .submitBtn {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 1.1s;
 }
 
 @media (max-width: 900px) {
@@ -232,5 +373,23 @@
 
   .contactFormCard {
     padding: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contactSection .sectionTag,
+  .contactSection h2,
+  .contactIntro,
+  .contactInfoColumn,
+  .contactFormCard,
+  .contactInfoCard,
+  .formGroup,
+  .submitBtn,
+  .successMessage,
+  .errorMessage {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    animation: none;
   }
 }

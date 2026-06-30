@@ -1,8 +1,34 @@
+import { useState, useEffect, useRef } from "react";
 import "../style/Footer.css";
 
 function Footer() {
+  const footerRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const node = footerRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(node);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <footer className="footer">
+    <footer
+      className={`footer${isVisible ? " show" : ""}`}
+      ref={footerRef}
+    >
       <div className="footerContainer">
         <p className="footerInfo">
           <span className="highlightName">Saikumar S.</span>
@@ -26,7 +52,7 @@ function Footer() {
 
           {/* LinkedIn */}
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/saikumar-s-a18968302/"
             target="_blank"
             rel="noopener noreferrer"
             className="socialBtn linkedin"
