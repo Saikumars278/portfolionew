@@ -28,88 +28,124 @@ function Projects() {
   }, []);
 
   // Close credential panel on any click outside it
-useEffect(() => {
-  const handleOutsideClick = (e) => {
-    if (activeCredential && !e.target.closest(".projectDualSection")) {
-      setActiveCredential(null);
-    }
-  };
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      if (activeCredential && !e.target.closest(".projectDualSection")) {
+        setActiveCredential(null);
+      }
+    };
 
-  document.addEventListener("mousedown", handleOutsideClick);
+    document.addEventListener("mousedown", handleOutsideClick);
 
-  return () => {
-    document.removeEventListener("mousedown", handleOutsideClick);
-  };
-}, [activeCredential]);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [activeCredential]);
 
   const projectsList = [
-  {
-    number: "01",
-    category: "Full Stack Development",
-    title: "Attendance Management System",
-    desc: "An end-to-end attendance system featuring authentication, attendance tracking, admin dashboard, and full CRUD operations.",
-    features: [
-      "JWT Authentication",
-      "Admin & User Dashboards",
-      "Attendance CRUD",
-      "REST API Integration",
-    ],
-    tech: "React.js, Django, Django REST Framework, MySQL",
-    dualButtons: true,
-    adminLink: "https://github.com/Saikumars278",
-    userLink: "https://github.com/Saikumars278",
-    adminCreds: {
-      username: "admin",
-      password: "admin@123",
+    {
+      number: "01",
+      category: "Full Stack Development",
+      title: "Attendance Management System",
+      desc: "An end-to-end attendance system featuring authentication, attendance tracking, admin dashboard, and full CRUD operations.",
+      features: [
+        "JWT Authentication",
+        "Admin & User Dashboards",
+        "Attendance CRUD",
+        "REST API Integration",
+      ],
+      tech: "React.js, Django, Django REST Framework, MySQL",
+      dualButtons: true,
+      adminLink: "https://github.com/Saikumars278",
+      userLink: "https://github.com/Saikumars278",
+      adminCreds: {
+        username: "admin",
+        password: "admin@123",
+      },
+      userCreds: {
+        username: "user",
+        password: "user@123",
+      },
     },
-    userCreds: {
-      username: "user",
-      password: "user@123",
+
+    {
+      number: "02",
+      category: "Healthcare Management System",
+      title: "Hospital Management System",
+      desc: "Built a hospital management platform for handling patient records, doctor details, appointment scheduling, admin management, and complete hospital workflow operations.",
+      features: [
+        "Patient Records",
+        "Doctor Management",
+        "Appointment Scheduling",
+        "Admin Dashboard",
+      ],
+      tech: "React.js, Django, Django REST Framework, MySQL",
+      link: "https://github.com/Saikumars278",
     },
-  },
 
-  {
-    number: "02",
-    category: "Healthcare Management System",
-    title: "Hospital Management System",
-    desc: "Built a hospital management platform for handling patient records, doctor details, appointment scheduling, admin management, and complete hospital workflow operations.",
-    features: [
-      "Patient Records",
-      "Doctor Management",
-      "Appointment Scheduling",
-      "Admin Dashboard",
-    ],
-    tech: "React.js, Django, Django REST Framework, MySQL",
-    link: "https://github.com/Saikumars278",
-  },
+    {
+      number: "03",
+      category: "AI Chatbot Application",
+      title: "Smart Chatbot System",
+      desc: "Built an interactive AI chatbot application that responds to user queries, provides instant support, and delivers a clean real-time chat experience.",
+      features: [
+        "AI Responses",
+        "Real-time Chat UI",
+        "OpenAI Integration",
+        "Session Management",
+      ],
+      tech: "React.js, Python, Django, REST API, GroqCloud API",
+      dualButtons: true,
 
-  {
-  number: "03",
-  category: "AI Chatbot Application",
-  title: "Smart Chatbot System",
-  desc: "Built an interactive AI chatbot application that responds to user queries, provides instant support, and delivers a clean real-time chat experience.",
-  features: [
-    "AI Responses",
-    "Real-time Chat UI",
-    "OpenAI Integration",
-    "Session Management",
-  ],
-  tech: "React.js, Python, Django, REST API, GroqCloud API",
-  dualButtons: true,
+      adminLink: "https://your-chatbot-admin-url.com",
+      userLink: "https://your-chatbot-user-url.com",
 
-  adminLink: "https://your-chatbot-admin-url.com",
-  userLink: "https://your-chatbot-user-url.com",
+      adminCreds: {
+        username: "admin",
+        password: "admin@123",
+      },
 
-  adminCreds: {
-    username: "admin",
-    password: "admin@123",
-  },
+      userCreds: {
+        username: "user",
+        password: "user@123",
+      },
+    },
 
-  userCreds: {
-    username: "user",
-    password: "user@123",
-  },
-},
+    // ===========================
+    // CRM PROJECT (Admin Only)
+    // ===========================
+
+    {
+      number: "04",
+      category: "Inventory & Billing System",
+      title: "Shop CRM Management System",
+      desc: "A complete Shop CRM system for managing products, stock, billing, sales, revenue, and inventory through a secure admin dashboard.",
+
+      features: [
+        "Admin Dashboard",
+        "Product Management",
+        "Stock Management",
+        "Billing & GST Invoice",
+        "Daily Sales Report",
+        "Revenue Analytics",
+        "Search Products",
+        "Low Stock Alerts",
+        "Sales History",
+        "Role-Based Authentication",
+      ],
+
+     tech: "Next.js, Django, Django REST Framework, MySQL, JWT Authentication, Tailwind CSS",
+
+      dualButtons: true,
+
+      adminLink: "https://github.com/Saikumars278",
+
+      adminCreds: {
+        username: "admin",
+        password: "admin@123",
+      },
+      // No userCreds/userLink — this project only shows an Admin Panel button
+    },
   ];
 
   return (
@@ -151,27 +187,31 @@ useEffect(() => {
               {project.dualButtons ? (
                 <div className="projectDualSection" ref={credRef}>
                   <div className="projectBtnGroup">
-                    <button
-                      className={`projectBtn projectBtnGold ${activeCredential === `admin-${index}` ? "activeCredBtn" : ""}`}
-                      onClick={() =>
-                        setActiveCredential(
-                          activeCredential === `admin-${index}` ? null : `admin-${index}`
-                        )
-                      }
-                    >
-                      🛡️ Admin Panel
-                    </button>
+                    {project.adminCreds && (
+                      <button
+                        className={`projectBtn projectBtnGold ${activeCredential === `admin-${index}` ? "activeCredBtn" : ""}`}
+                        onClick={() =>
+                          setActiveCredential(
+                            activeCredential === `admin-${index}` ? null : `admin-${index}`
+                          )
+                        }
+                      >
+                        🛡️ Admin Panel
+                      </button>
+                    )}
 
-                    <button
-                      className={`projectBtn projectBtnOutline ${activeCredential === `user-${index}` ? "activeCredBtn" : ""}`}
-                      onClick={() =>
-                        setActiveCredential(
-                          activeCredential === `user-${index}` ? null : `user-${index}`
-                        )
-                      }
-                    >
-                      👤 User Panel
-                    </button>
+                    {project.userCreds && (
+                      <button
+                        className={`projectBtn projectBtnOutline ${activeCredential === `user-${index}` ? "activeCredBtn" : ""}`}
+                        onClick={() =>
+                          setActiveCredential(
+                            activeCredential === `user-${index}` ? null : `user-${index}`
+                          )
+                        }
+                      >
+                        👤 User Panel
+                      </button>
+                    )}
                   </div>
 
                   {/* Admin Credentials Panel */}

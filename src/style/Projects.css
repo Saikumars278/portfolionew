@@ -381,3 +381,10 @@
     animation: none;
   }
 }
+
+.projectsSection {
+  background: #070e24;
+  padding: 40px 8% 100px;
+  color: white;
+  overflow: visible;   /* hidden → visible */
+}

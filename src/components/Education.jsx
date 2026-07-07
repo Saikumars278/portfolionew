@@ -40,12 +40,16 @@ function Education() {
     },
   ];
 
-  const certification = {
-    type: "certification",
-    status: "Completed",
-    degree: "Full Stack Web Development",
-    field: "Python / React Stack",
-    college: "MashupStack, Thiruvananthapuram",
+  const internship = {
+    type: "internship",
+    duration: "Nov 2024 – May 2025",
+    title: "Python Full Stack Developer Intern",
+    company: "MashupStack",
+    points: [
+      "Worked on full-stack web application development",
+      "Developed REST APIs using Django REST Framework",
+      "Tested APIs using Postman",
+    ],
   };
 
   return (
@@ -55,10 +59,10 @@ function Education() {
       ref={sectionRef}
     >
       <div className="educationContainer">
-        <p className="sectionTag">Education & Certification</p>
-        <h2>Education & Certification</h2>
+        <p className="sectionTag">Education & Internship</p>
+        <h2>Education & Internship</h2>
         <p className="educationIntro">
-          My educational background and professional certifications in technology and engineering.
+          My educational background and hands-on internship experience in technology and engineering.
         </p>
 
         <div className="educationGrid">
@@ -90,23 +94,29 @@ function Education() {
             </div>
           </div>
 
-          {/* Right Column — Professional Certification */}
+          {/* Right Column — Internship */}
           <div className="educationGroup">
             <h3 className="groupTitle">
               <span className="groupIcon cert">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="8" r="6"></circle>
-                  <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"></path>
+                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
                 </svg>
               </span>
-              Professional Certification
+              Internship
             </h3>
 
             <div className="certCard">
-              <span className="certStatus">{certification.status}</span>
-              <h4 className="eduDegree">{certification.degree}</h4>
-              <p className="eduField">{certification.field}</p>
-              <p className="eduCollege">{certification.college}</p>
+              <span className="certStatus">{internship.duration}</span>
+              <h4 className="eduDegree">{internship.title}</h4>
+              <p className="eduField">{internship.company}</p>
+              <ul className="internshipPoints">
+                {internship.points.map((point, index) => (
+                  <li key={index} className="eduCollege">
+                    {point}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
 
