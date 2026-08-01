@@ -82,7 +82,7 @@ function About() {
 
               <li className="factItem">
                 <span className="factLabel">Experience</span>
-                <span className="factValue">Entry Level</span>
+                <span className="factValue">1 Year</span>
               </li>
 
               <li className="factItem">

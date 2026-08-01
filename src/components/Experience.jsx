@@ -25,7 +25,7 @@ function Experience() {
 
   const experiences = [
     {
-      role: "Python Full Stack Developer Intern",
+      role: "Python Full Stack Developer ",
       company: "NIM Technologies",
       duration: "2025 – Present",
       responsibilities: [

@@ -43,7 +43,7 @@ function Education() {
   const internship = {
     type: "internship",
     duration: "Nov 2024 – May 2025",
-    title: "Python Full Stack Developer Intern",
+    title: "Python Full Stack Developer ",
     company: "MashupStack",
     points: [
       "Worked on full-stack web application development",

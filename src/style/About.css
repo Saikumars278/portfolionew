@@ -283,17 +283,31 @@
   }
 
   .aboutStatsGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .statCard {
+    padding: 14px 12px;
+  }
+
+  .statCard h3 {
+    font-size: 28px;
+  }
+
+  .statCard p {
+    font-size: 12px;
   }
 
   .aboutBox {
-    padding: 22px 18px;
+    padding: 24px 20px;
   }
 
   .factItem {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 8px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
   }
 }
 

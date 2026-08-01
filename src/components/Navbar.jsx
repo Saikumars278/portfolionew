@@ -18,6 +18,9 @@ function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
+      // Close mobile dropdown when scrolling
+      setIsOpen(false);
+
       const scrollPosition = window.scrollY + 150;
       let currentSection = "home";
 
@@ -55,18 +58,6 @@ function Navbar() {
       document.removeEventListener("click", handleOutsideClick);
     };
   }, []);
-
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isOpen]);
 
   const handleNavClick = (e, id) => {
     e.preventDefault();
