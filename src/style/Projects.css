@@ -29,11 +29,12 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 28px;
+  align-items: start;
 }
 
 .projectCard {
   position: relative;
-  padding: 36px;
+  padding: 32px 28px;
   border-radius: 20px;
   background: linear-gradient(
     145deg,
@@ -45,6 +46,8 @@
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 .projectCard::before {
@@ -58,16 +61,17 @@
 }
 
 .projectCard:hover {
-  transform: translateY(-10px);
+  transform: translateY(-8px);
   border-color: #d4af37;
-  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.4);
 }
 
 .projectNumber {
   color: rgba(212, 175, 55, 0.35);
-  font-size: 54px;
+  font-size: 48px;
   font-weight: 800;
-  margin-bottom: 20px;
+  margin-bottom: 14px;
+  line-height: 1;
   transition: color 0.4s ease, transform 0.4s ease;
 }
 
@@ -80,46 +84,60 @@
   color: #d4af37;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  font-size: 13px;
-  margin-bottom: 14px;
+  font-size: 12.5px;
+  margin-bottom: 10px;
+  font-weight: 600;
 }
 
 .projectCard h3 {
   color: #ffffff;
-  font-size: 26px;
-  margin-bottom: 16px;
+  font-size: 24px;
+  line-height: 1.3;
+  margin-bottom: 12px;
+  min-height: 62px;
+  display: flex;
+  align-items: flex-start;
 }
 
 .projectDesc {
   color: #d6d9e6;
-  line-height: 1.7;
-  margin-bottom: 22px;
+  font-size: 15px;
+  line-height: 1.65;
+  margin-bottom: 16px;
   flex: 1;
 }
 
 .projectTech {
   color: #f3d675;
-  font-size: 14px;
-  line-height: 1.6;
-  margin-bottom: 28px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  min-height: 40px;
+  display: flex;
+  align-items: flex-start;
 }
 
 /* Push buttons to the bottom of every card */
 .projectBtnWrapper,
 .projectDualSection {
   margin-top: auto;
+  width: 100%;
 }
 
 /* Base button style */
 .projectBtn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   text-decoration: none;
-  padding: 11px 22px;
+  padding: 12px 24px;
   border-radius: 50px;
   font-weight: 600;
   font-size: 14px;
+  line-height: 1.2;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
+  box-sizing: border-box;
 }
 
 /* Gold filled button - Admin Panel */
@@ -131,23 +149,23 @@
 
 .projectBtnGold:hover {
   background: linear-gradient(135deg, #f5dc7a, #ffffff);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 28px rgba(212, 175, 55, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(212, 175, 55, 0.35);
 }
 
-/* Dark transparent outline button - User Panel */
+/* Cyan glass button - User Panel */
 .projectBtnOutline {
-  background: transparent;
-  color: #d4af37;
-  border: 1px solid #d4af37;
+  background: rgba(0, 240, 255, 0.12);
+  color: #00f0ff;
+  border: 1px solid rgba(0, 240, 255, 0.45);
 }
 
 .projectBtnOutline:hover {
-  background: rgba(212, 175, 55, 0.1);
-  border-color: #f5dc7a;
-  color: #f5dc7a;
-  transform: translateY(-3px);
-  box-shadow: 0 12px 28px rgba(212, 175, 55, 0.15);
+  background: rgba(0, 240, 255, 0.26);
+  border-color: #00f0ff;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0, 240, 255, 0.25);
 }
 
 /* Dual button group: side by side on desktop */
@@ -155,6 +173,7 @@
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 /* Button used as toggle (reset default button styles) */
@@ -180,50 +199,51 @@
   gap: 0;
 }
 
-/* Credential panel card — floats over grid, doesn't push card height */
+/* Credential panel card — floating overlay dropdown on Desktop/PC */
 .credPanel {
   position: absolute;
-  top: calc(100% + 10px);
+  top: calc(100% + 12px);
   left: 0;
   right: 0;
-  z-index: 99;
-  border-radius: 14px;
-  padding: 18px 20px;
+  z-index: 100;
+  border-radius: 16px;
+  padding: 18px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
   animation: credFadeIn 0.3s cubic-bezier(0.2, 0.8, 0.3, 1.1);
   transform-origin: top center;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-sizing: border-box;
 }
 
 @keyframes credFadeIn {
-  from { opacity: 0; transform: translateY(-10px) scaleY(0.92); }
+  from { opacity: 0; transform: translateY(-8px) scaleY(0.95); }
   to   { opacity: 1; transform: translateY(0) scaleY(1); }
 }
 
 /* Gold variant - Admin */
 .credPanelGold {
-  background: rgba(212, 175, 55, 0.10);
-  border: 1px solid rgba(212, 175, 55, 0.40);
-  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.12);
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(212, 175, 55, 0.12);
 }
 
 /* Cyan variant - User */
 .credPanelCyan {
-  background: rgba(0, 240, 255, 0.07);
-  border: 1px solid rgba(0, 240, 255, 0.35);
-  box-shadow: 0 8px 24px rgba(0, 240, 255, 0.10);
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(0, 240, 255, 0.40);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 240, 255, 0.12);
 }
 
 .credPanelTitle {
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.8px;
   text-transform: uppercase;
   color: #d4af37;
-  margin: 0 0 4px;
+  margin: 0 0 2px;
 }
 
 .credPanelCyan .credPanelTitle {
@@ -232,10 +252,10 @@
 
 .credRow {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  padding-bottom: 8px;
+  flex-direction: column;
+  gap: 5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  padding-bottom: 10px;
 }
 
 .credRow:last-of-type {
@@ -245,55 +265,131 @@
 
 .credLabel {
   color: #cfd3e3;
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.credValueWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  min-width: 0;
+  overflow: hidden;
+}
+
+.credPanelGold .credValueWrapper {
+  border-color: rgba(212, 175, 55, 0.25);
+}
+
+.credPanelCyan .credValueWrapper {
+  border-color: rgba(0, 240, 255, 0.25);
 }
 
 .credValue {
-  font-size: 13.5px;
-  font-weight: 700;
-  font-family: 'Courier New', monospace;
-  letter-spacing: 0.5px;
-  padding: 3px 12px;
-  border-radius: 20px;
-  background: rgba(212, 175, 55, 0.15);
-  border: 1px solid rgba(212, 175, 55, 0.30);
+  font-size: 11.5px;
+  font-weight: 600;
+  font-family: inherit;
+  letter-spacing: -0.1px;
   color: #f5dc7a;
   user-select: all;
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-
-.credValue:hover {
-  transform: translateY(-1px);
+  word-break: break-all;
+  flex: 1;
+  min-width: 0;
 }
 
 .credPanelCyan .credValue {
-  background: rgba(0, 240, 255, 0.12);
-  border-color: rgba(0, 240, 255, 0.30);
   color: #00f0ff;
+}
+
+/* Copy Button Styling */
+.copyBtn {
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.copyBtnGold {
+  background: rgba(212, 175, 55, 0.16);
+  border: 1px solid rgba(212, 175, 55, 0.38);
+  color: #f5dc7a;
+}
+
+.copyBtnGold:hover {
+  background: rgba(212, 175, 55, 0.32);
+  border-color: #d4af37;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.copyBtnGold.copied {
+  background: rgba(72, 187, 120, 0.25);
+  border-color: #48bb78;
+  color: #68d391;
+}
+
+.copyBtnCyan {
+  background: rgba(0, 240, 255, 0.14);
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  color: #00f0ff;
+}
+
+.copyBtnCyan:hover {
+  background: rgba(0, 240, 255, 0.28);
+  border-color: #00f0ff;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.copyBtnCyan.copied {
+  background: rgba(72, 187, 120, 0.25);
+  border-color: #48bb78;
+  color: #68d391;
 }
 
 .credLink {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   margin-top: 4px;
+  padding: 8px 14px;
   font-size: 13px;
   font-weight: 600;
-  color: #d4af37;
+  border-radius: 8px;
+  color: #071126;
+  background: linear-gradient(135deg, #d4af37, #f5dc7a);
   text-decoration: none;
-  transition: color 0.2s ease, letter-spacing 0.2s ease;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.25);
 }
 
 .credLink:hover {
-  color: #f5dc7a;
-  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, #f5dc7a, #ffffff);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(212, 175, 55, 0.4);
 }
 
 .credLinkCyan {
-  color: #00f0ff;
+  color: #071126;
+  background: linear-gradient(135deg, #00f0ff, #7fffff);
+  box-shadow: 0 4px 12px rgba(0, 240, 255, 0.25);
 }
 
 .credLinkCyan:hover {
-  color: #7fffff;
+  background: linear-gradient(135deg, #7fffff, #ffffff);
+  box-shadow: 0 6px 18px rgba(0, 240, 255, 0.4);
 }
 
 /* Scroll-triggered entrance animation */
@@ -346,26 +442,149 @@
   .projectsGrid {
     grid-template-columns: repeat(2, 1fr);
   }
+  .credPanel {
+    position: relative;
+    top: 0;
+    margin-top: 16px;
+    width: 100%;
+  }
 }
 
 @media (max-width: 600px) {
+  .projectsSection {
+    padding: 32px 14px 60px;
+    overflow: hidden;
+  }
+
+  .projectsIntro {
+    font-size: 15px;
+    line-height: 1.65;
+    margin-bottom: 32px;
+  }
+
   .projectsGrid {
     grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  /* Larger, punchier card container on mobile */
+  .projectCard {
+    padding: 32px 24px 32px;
+    border-radius: 22px;
+    height: auto;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .projectNumber {
+    font-size: 46px;
+    margin-bottom: 12px;
+    line-height: 1;
+  }
+
+  .projectCategory {
+    font-size: 13px;
+    margin-bottom: 8px;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+  }
+
+  .projectCard h3 {
+    font-size: 24px;
+    line-height: 1.35;
+    margin-bottom: 14px;
+    min-height: auto;
+  }
+
+  .projectDesc {
+    font-size: 15.5px;
+    line-height: 1.65;
+    margin-bottom: 18px;
+  }
+
+  .projectTech {
+    font-size: 14.5px;
+    line-height: 1.55;
+    margin-bottom: 24px;
+    min-height: auto;
   }
 
   .projectsSection h2 {
-    font-size: 32px;
+    font-size: 30px;
+    line-height: 1.25;
   }
 
-  /* Stack buttons vertically on mobile */
+  /* Taller, prominent touch-friendly buttons on mobile */
   .projectBtnGroup {
+    display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 14px;
+    width: 100%;
   }
 
-  .projectBtnGroup .projectBtn {
+  .projectBtnGroup .projectBtn,
+  .projectBtnWrapper .projectBtn {
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 22px;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 50px;
+    box-sizing: border-box;
     text-align: center;
+  }
+
+  /* Credentials Panel on Mobile */
+  .credPanel {
+    position: relative;
+    top: 0;
+    margin-top: 18px;
+    padding: 20px 16px;
+    border-radius: 16px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .credRow {
+    gap: 6px;
+    padding-bottom: 10px;
+  }
+
+  .credLabel {
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .credValueWrapper {
+    padding: 9px 12px;
+    gap: 8px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .credValue {
+    font-size: 12.5px;
+    word-break: break-all;
+  }
+
+  .copyBtn {
+    font-size: 12px;
+    padding: 4px 10px;
+  }
+
+  .credLink {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 12px 18px;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    border-radius: 10px;
   }
 }
 
@@ -380,11 +599,4 @@
     transition: none;
     animation: none;
   }
-}
-
-.projectsSection {
-  background: #070e24;
-  padding: 40px 8% 100px;
-  color: white;
-  overflow: visible;   /* hidden → visible */
 }

@@ -3,7 +3,16 @@ import "../style/Projects.css";
 
 function Projects() {
   const [activeCredential, setActiveCredential] = useState(null);
+  const [copiedState, setCopiedState] = useState("");
   const credRef = useRef(null);
+
+  const handleCopy = (text, key) => {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text);
+      setCopiedState(key);
+      setTimeout(() => setCopiedState(""), 2000);
+    }
+  };
 
   const sectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -96,18 +105,11 @@ function Projects() {
       ],
       tech: "React.js, Python, Django, REST API, GroqCloud API",
       dualButtons: true,
-
-      adminLink: "https://your-chatbot-admin-url.com",
-      userLink: "https://your-chatbot-user-url.com",
-
+      adminLink: "https://chatbot-backend-tmii.onrender.com",
+      userLink: "https://chatbot-frontend-umber-omega.vercel.app/",
       adminCreds: {
-        username: "admin",
-        password: "admin@123",
-      },
-
-      userCreds: {
-        username: "user",
-        password: "user@123",
+        username: "s.saikumar9623@gmail.com",
+        password: "SaiKLMNPQR34!$",
       },
     },
 
@@ -181,36 +183,58 @@ function Projects() {
               <p className="projectDesc">{project.desc}</p>
 
               <p className="projectTech">
-                <strong>Technologies:</strong> {project.tech}
+                <strong>Technologies: </strong>{project.tech}
               </p>
 
               {project.dualButtons ? (
                 <div className="projectDualSection" ref={credRef}>
                   <div className="projectBtnGroup">
-                    {project.adminCreds && (
-                      <button
-                        className={`projectBtn projectBtnGold ${activeCredential === `admin-${index}` ? "activeCredBtn" : ""}`}
-                        onClick={() =>
-                          setActiveCredential(
-                            activeCredential === `admin-${index}` ? null : `admin-${index}`
-                          )
-                        }
-                      >
-                        🛡️ Admin Panel
-                      </button>
+                    {(project.adminLink || project.adminCreds) && (
+                      project.adminCreds ? (
+                        <button
+                          className={`projectBtn projectBtnGold ${activeCredential === `admin-${index}` ? "activeCredBtn" : ""}`}
+                          onClick={() =>
+                            setActiveCredential(
+                              activeCredential === `admin-${index}` ? null : `admin-${index}`
+                            )
+                          }
+                        >
+                          🛡️ Admin Panel
+                        </button>
+                      ) : (
+                        <a
+                          href={project.adminLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="projectBtn projectBtnGold"
+                        >
+                          🛡️ Admin Panel
+                        </a>
+                      )
                     )}
 
-                    {project.userCreds && (
-                      <button
-                        className={`projectBtn projectBtnOutline ${activeCredential === `user-${index}` ? "activeCredBtn" : ""}`}
-                        onClick={() =>
-                          setActiveCredential(
-                            activeCredential === `user-${index}` ? null : `user-${index}`
-                          )
-                        }
-                      >
-                        👤 User Panel
-                      </button>
+                    {(project.userLink || project.userCreds) && (
+                      project.userCreds ? (
+                        <button
+                          className={`projectBtn projectBtnOutline ${activeCredential === `user-${index}` ? "activeCredBtn" : ""}`}
+                          onClick={() =>
+                            setActiveCredential(
+                              activeCredential === `user-${index}` ? null : `user-${index}`
+                            )
+                          }
+                        >
+                          👤 User Panel
+                        </button>
+                      ) : (
+                        <a
+                          href={project.userLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="projectBtn projectBtnOutline"
+                        >
+                          👤 User Panel
+                        </a>
+                      )
                     )}
                   </div>
 
@@ -218,19 +242,40 @@ function Projects() {
                   {activeCredential === `admin-${index}` && project.adminCreds && (
                     <div className="credPanel credPanelGold">
                       <p className="credPanelTitle">🛡️ Admin Credentials</p>
+                      
                       <div className="credRow">
                         <span className="credLabel">Username</span>
-                        <span className="credValue">{project.adminCreds.username}</span>
+                        <div className="credValueWrapper">
+                          <span className="credValue">{project.adminCreds.username}</span>
+                          <button
+                            type="button"
+                            className={`copyBtn copyBtnGold ${copiedState === `admin-u-${index}` ? "copied" : ""}`}
+                            onClick={() => handleCopy(project.adminCreds.username, `admin-u-${index}`)}
+                          >
+                            {copiedState === `admin-u-${index}` ? "Copied! ✓" : "Copy 📋"}
+                          </button>
+                        </div>
                       </div>
+
                       <div className="credRow">
                         <span className="credLabel">Password</span>
-                        <span className="credValue">{project.adminCreds.password}</span>
+                        <div className="credValueWrapper">
+                          <span className="credValue">{project.adminCreds.password}</span>
+                          <button
+                            type="button"
+                            className={`copyBtn copyBtnGold ${copiedState === `admin-p-${index}` ? "copied" : ""}`}
+                            onClick={() => handleCopy(project.adminCreds.password, `admin-p-${index}`)}
+                          >
+                            {copiedState === `admin-p-${index}` ? "Copied! ✓" : "Copy 📋"}
+                          </button>
+                        </div>
                       </div>
+
                       <a
                         href={project.adminLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="credLink"
+                        className="credLink credLinkGold"
                       >
                         Open Admin Panel →
                       </a>
@@ -241,14 +286,35 @@ function Projects() {
                   {activeCredential === `user-${index}` && project.userCreds && (
                     <div className="credPanel credPanelCyan">
                       <p className="credPanelTitle">👤 User Credentials</p>
+                      
                       <div className="credRow">
                         <span className="credLabel">Username</span>
-                        <span className="credValue">{project.userCreds.username}</span>
+                        <div className="credValueWrapper">
+                          <span className="credValue">{project.userCreds.username}</span>
+                          <button
+                            type="button"
+                            className={`copyBtn copyBtnCyan ${copiedState === `user-u-${index}` ? "copied" : ""}`}
+                            onClick={() => handleCopy(project.userCreds.username, `user-u-${index}`)}
+                          >
+                            {copiedState === `user-u-${index}` ? "Copied! ✓" : "Copy 📋"}
+                          </button>
+                        </div>
                       </div>
+
                       <div className="credRow">
                         <span className="credLabel">Password</span>
-                        <span className="credValue">{project.userCreds.password}</span>
+                        <div className="credValueWrapper">
+                          <span className="credValue">{project.userCreds.password}</span>
+                          <button
+                            type="button"
+                            className={`copyBtn copyBtnCyan ${copiedState === `user-p-${index}` ? "copied" : ""}`}
+                            onClick={() => handleCopy(project.userCreds.password, `user-p-${index}`)}
+                          >
+                            {copiedState === `user-p-${index}` ? "Copied! ✓" : "Copy 📋"}
+                          </button>
+                        </div>
                       </div>
+
                       <a
                         href={project.userLink}
                         target="_blank"
