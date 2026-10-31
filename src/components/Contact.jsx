@@ -115,7 +115,7 @@ function Contact() {
               <div className="contactDetails">
                 <h3>Phone</h3>
                 <p>
-                  <a href="tel:8925428378">8925428378</a>
+                  <a href="tel:8242563722">8242563722</a>
                 </p>
               </div>
             </div>

@@ -4,7 +4,6 @@ import "../style/Projects.css";
 function Projects() {
   const [activeCredential, setActiveCredential] = useState(null);
   const [copiedState, setCopiedState] = useState("");
-  const credRef = useRef(null);
 
   const handleCopy = (text, key) => {
     if (navigator.clipboard) {
@@ -36,19 +35,17 @@ function Projects() {
     return () => observer.disconnect();
   }, []);
 
-  // Close credential panel on any click outside it
+  // Close modal on Escape key
   useEffect(() => {
-    const handleOutsideClick = (e) => {
-      if (activeCredential && !e.target.closest(".projectDualSection")) {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
         setActiveCredential(null);
       }
     };
-
-    document.addEventListener("mousedown", handleOutsideClick);
-
-    return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
-    };
+    if (activeCredential) {
+      window.addEventListener("keydown", handleKeyDown);
+    }
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [activeCredential]);
 
   const projectsList = [
@@ -122,7 +119,6 @@ function Projects() {
       category: "Inventory & Billing System",
       title: "Shop CRM Management System",
       desc: "A complete Shop CRM system for managing products, stock, billing, sales, revenue, and inventory through a secure admin dashboard.",
-
       features: [
         "Admin Dashboard",
         "Product Management",
@@ -135,18 +131,13 @@ function Projects() {
         "Sales History",
         "Role-Based Authentication",
       ],
-
-     tech: "Next.js, Django, Django REST Framework, MySQL, JWT Authentication, Tailwind CSS",
-
+      tech: "Next.js, Django, Django REST Framework, MySQL, JWT Authentication, Tailwind CSS",
       dualButtons: true,
-
       adminLink: "https://github.com/Saikumars278",
-
       adminCreds: {
         username: "admin",
         password: "admin@123",
       },
-      // No userCreds/userLink — this project only shows an Admin Panel button
     },
   ];
 
@@ -168,180 +159,229 @@ function Projects() {
         </p>
 
         <div className="projectsGrid">
-          {projectsList.map((project, index) => (
-            <div
-              className="projectCard"
-              key={index}
-              style={{ "--cardIndex": index }}
-            >
-              <div className="projectNumber">{project.number}</div>
+          {projectsList.map((project, index) => {
+            const isAdminActive =
+              activeCredential?.project.number === project.number &&
+              activeCredential?.type === "admin";
+            const isUserActive =
+              activeCredential?.project.number === project.number &&
+              activeCredential?.type === "user";
 
-              <div className="projectCategory">{project.category}</div>
+            return (
+              <div
+                className="projectCard"
+                key={index}
+                style={{ "--cardIndex": index }}
+              >
+                <div className="projectNumber">{project.number}</div>
 
-              <h3>{project.title}</h3>
+                <div className="projectCategory">{project.category}</div>
 
-              <p className="projectDesc">{project.desc}</p>
+                <h3>{project.title}</h3>
 
-              <p className="projectTech">
-                <strong>Technologies: </strong>{project.tech}
-              </p>
+                <p className="projectDesc">{project.desc}</p>
 
-              {project.dualButtons ? (
-                <div className="projectDualSection" ref={credRef}>
-                  <div className="projectBtnGroup">
-                    {(project.adminLink || project.adminCreds) && (
-                      project.adminCreds ? (
-                        <button
-                          className={`projectBtn projectBtnGold ${activeCredential === `admin-${index}` ? "activeCredBtn" : ""}`}
-                          onClick={() =>
-                            setActiveCredential(
-                              activeCredential === `admin-${index}` ? null : `admin-${index}`
-                            )
-                          }
-                        >
-                          🛡️ Admin Panel
-                        </button>
-                      ) : (
-                        <a
-                          href={project.adminLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="projectBtn projectBtnGold"
-                        >
-                          🛡️ Admin Panel
-                        </a>
-                      )
-                    )}
+                <p className="projectTech">
+                  <strong>Technologies: </strong>{project.tech}
+                </p>
 
-                    {(project.userLink || project.userCreds) && (
-                      project.userCreds ? (
-                        <button
-                          className={`projectBtn projectBtnOutline ${activeCredential === `user-${index}` ? "activeCredBtn" : ""}`}
-                          onClick={() =>
-                            setActiveCredential(
-                              activeCredential === `user-${index}` ? null : `user-${index}`
-                            )
-                          }
-                        >
-                          👤 User Panel
-                        </button>
-                      ) : (
-                        <a
-                          href={project.userLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="projectBtn projectBtnOutline"
-                        >
-                          👤 User Panel
-                        </a>
-                      )
-                    )}
+                {project.dualButtons ? (
+                  <div className="projectDualSection">
+                    <div className="projectBtnGroup">
+                      {(project.adminLink || project.adminCreds) && (
+                        project.adminCreds ? (
+                          <button
+                            type="button"
+                            className={`projectBtn projectBtnGold ${isAdminActive ? "activeCredBtn" : ""}`}
+                            onClick={() =>
+                              setActiveCredential(
+                                isAdminActive ? null : { type: "admin", project }
+                              )
+                            }
+                          >
+                            🛡️ Admin Panel
+                          </button>
+                        ) : (
+                          <a
+                            href={project.adminLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="projectBtn projectBtnGold"
+                          >
+                            🛡️ Admin Panel
+                          </a>
+                        )
+                      )}
+
+                      {(project.userLink || project.userCreds) && (
+                        project.userCreds ? (
+                          <button
+                            type="button"
+                            className={`projectBtn projectBtnOutline ${isUserActive ? "activeCredBtn" : ""}`}
+                            onClick={() =>
+                              setActiveCredential(
+                                isUserActive ? null : { type: "user", project }
+                              )
+                            }
+                          >
+                            👤 User Panel
+                          </button>
+                        ) : (
+                          <a
+                            href={project.userLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="projectBtn projectBtnOutline"
+                          >
+                            👤 User Panel
+                          </a>
+                        )
+                      )}
+                    </div>
                   </div>
-
-                  {/* Admin Credentials Panel */}
-                  {activeCredential === `admin-${index}` && project.adminCreds && (
-                    <div className="credPanel credPanelGold">
-                      <p className="credPanelTitle">🛡️ Admin Credentials</p>
-                      
-                      <div className="credRow">
-                        <span className="credLabel">Username</span>
-                        <div className="credValueWrapper">
-                          <span className="credValue">{project.adminCreds.username}</span>
-                          <button
-                            type="button"
-                            className={`copyBtn copyBtnGold ${copiedState === `admin-u-${index}` ? "copied" : ""}`}
-                            onClick={() => handleCopy(project.adminCreds.username, `admin-u-${index}`)}
-                          >
-                            {copiedState === `admin-u-${index}` ? "Copied! ✓" : "Copy 📋"}
-                          </button>
-                        </div>
-                      </div>
-
-                      <div className="credRow">
-                        <span className="credLabel">Password</span>
-                        <div className="credValueWrapper">
-                          <span className="credValue">{project.adminCreds.password}</span>
-                          <button
-                            type="button"
-                            className={`copyBtn copyBtnGold ${copiedState === `admin-p-${index}` ? "copied" : ""}`}
-                            onClick={() => handleCopy(project.adminCreds.password, `admin-p-${index}`)}
-                          >
-                            {copiedState === `admin-p-${index}` ? "Copied! ✓" : "Copy 📋"}
-                          </button>
-                        </div>
-                      </div>
-
-                      <a
-                        href={project.adminLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="credLink credLinkGold"
-                      >
-                        Open Admin Panel →
-                      </a>
-                    </div>
-                  )}
-
-                  {/* User Credentials Panel */}
-                  {activeCredential === `user-${index}` && project.userCreds && (
-                    <div className="credPanel credPanelCyan">
-                      <p className="credPanelTitle">👤 User Credentials</p>
-                      
-                      <div className="credRow">
-                        <span className="credLabel">Username</span>
-                        <div className="credValueWrapper">
-                          <span className="credValue">{project.userCreds.username}</span>
-                          <button
-                            type="button"
-                            className={`copyBtn copyBtnCyan ${copiedState === `user-u-${index}` ? "copied" : ""}`}
-                            onClick={() => handleCopy(project.userCreds.username, `user-u-${index}`)}
-                          >
-                            {copiedState === `user-u-${index}` ? "Copied! ✓" : "Copy 📋"}
-                          </button>
-                        </div>
-                      </div>
-
-                      <div className="credRow">
-                        <span className="credLabel">Password</span>
-                        <div className="credValueWrapper">
-                          <span className="credValue">{project.userCreds.password}</span>
-                          <button
-                            type="button"
-                            className={`copyBtn copyBtnCyan ${copiedState === `user-p-${index}` ? "copied" : ""}`}
-                            onClick={() => handleCopy(project.userCreds.password, `user-p-${index}`)}
-                          >
-                            {copiedState === `user-p-${index}` ? "Copied! ✓" : "Copy 📋"}
-                          </button>
-                        </div>
-                      </div>
-
-                      <a
-                        href={project.userLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="credLink credLinkCyan"
-                      >
-                        Open User Panel →
-                      </a>
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <div className="projectBtnWrapper">
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="projectBtn projectBtnGold"
-                  >
-                    View Project
-                  </a>
-                </div>
-              )}
-            </div>
-          ))}
+                ) : (
+                  <div className="projectBtnWrapper">
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="projectBtn projectBtnGold"
+                    >
+                      View Project
+                    </a>
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
+
+      {/* Credentials Modal Dialog */}
+      {activeCredential && (
+        <div
+          className="credModalBackdrop"
+          onClick={() => setActiveCredential(null)}
+        >
+          <div
+            className={`credModalBox ${
+              activeCredential.type === "admin"
+                ? "credModalGold"
+                : "credModalCyan"
+            }`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="credModalHeader">
+              <div className="credModalTitleBlock">
+                <span className="credModalIcon">
+                  {activeCredential.type === "admin" ? "🛡️" : "👤"}
+                </span>
+                <div>
+                  <h4 className="credModalHeading">
+                    {activeCredential.type === "admin"
+                      ? "Admin Credentials"
+                      : "User Credentials"}
+                  </h4>
+                  <p className="credModalSub">
+                    {activeCredential.project.title}
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                className="credModalCloseBtn"
+                onClick={() => setActiveCredential(null)}
+                aria-label="Close credentials modal"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="credModalBody">
+              <div className="credRow">
+                <span className="credLabel">Username</span>
+                <div className="credValueWrapper">
+                  <span className="credValue">
+                    {activeCredential.type === "admin"
+                      ? activeCredential.project.adminCreds?.username
+                      : activeCredential.project.userCreds?.username}
+                  </span>
+                  <button
+                    type="button"
+                    className={`copyBtn ${
+                      activeCredential.type === "admin"
+                        ? "copyBtnGold"
+                        : "copyBtnCyan"
+                    } ${copiedState === "modal-username" ? "copied" : ""}`}
+                    onClick={() =>
+                      handleCopy(
+                        activeCredential.type === "admin"
+                          ? activeCredential.project.adminCreds?.username
+                          : activeCredential.project.userCreds?.username,
+                        "modal-username"
+                      )
+                    }
+                  >
+                    {copiedState === "modal-username"
+                      ? "Copied! ✓"
+                      : "Copy 📋"}
+                  </button>
+                </div>
+              </div>
+
+              <div className="credRow">
+                <span className="credLabel">Password</span>
+                <div className="credValueWrapper">
+                  <span className="credValue">
+                    {activeCredential.type === "admin"
+                      ? activeCredential.project.adminCreds?.password
+                      : activeCredential.project.userCreds?.password}
+                  </span>
+                  <button
+                    type="button"
+                    className={`copyBtn ${
+                      activeCredential.type === "admin"
+                        ? "copyBtnGold"
+                        : "copyBtnCyan"
+                    } ${copiedState === "modal-password" ? "copied" : ""}`}
+                    onClick={() =>
+                      handleCopy(
+                        activeCredential.type === "admin"
+                          ? activeCredential.project.adminCreds?.password
+                          : activeCredential.project.userCreds?.password,
+                        "modal-password"
+                      )
+                    }
+                  >
+                    {copiedState === "modal-password"
+                      ? "Copied! ✓"
+                      : "Copy 📋"}
+                  </button>
+                </div>
+              </div>
+
+              <a
+                href={
+                  activeCredential.type === "admin"
+                    ? activeCredential.project.adminLink
+                    : activeCredential.project.userLink
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`credLink ${
+                  activeCredential.type === "admin"
+                    ? "credLinkGold"
+                    : "credLinkCyan"
+                }`}
+              >
+                {activeCredential.type === "admin"
+                  ? "Open Admin Panel →"
+                  : "Open User Panel →"}
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
