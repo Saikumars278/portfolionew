@@ -53,6 +53,14 @@
   box-sizing: border-box;
 }
 
+/* Center odd last card in 2-column grid so it maintains exact same size and balanced alignment */
+.projectCard:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: 100%;
+  max-width: calc((100% - 30px) / 2);
+}
+
 .projectCard::before {
   content: "";
   position: absolute;
@@ -538,6 +546,10 @@
   .projectsGrid {
     grid-template-columns: 1fr;
     gap: 24px;
+  }
+
+  .projectCard:last-child:nth-child(odd) {
+    max-width: 100%;
   }
 
   .projectCard h3 {

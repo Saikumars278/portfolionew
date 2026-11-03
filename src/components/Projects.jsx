@@ -139,6 +139,26 @@ function Projects() {
         password: "admin@123",
       },
     },
+
+    // ============================================
+    // ARCHITECTURE & INTERIOR DESIGN STUDIO
+    // ============================================
+    {
+      number: "05",
+      category: "Architecture & Interior Studio",
+      title: "Shades & Line | Architecture & Interior Design Studio",
+      desc: "A premium, responsive portfolio and business website for an architecture and interior design studio, showcasing architectural planning, bespoke interior projects, space styling, and client consultations.",
+      features: [
+        "Architectural Planning",
+        "Luxury Interior Showcase",
+        "Space Management & Styling",
+        "Interactive Studio Portfolio",
+        "Client Consultation Booking",
+      ],
+      tech: "React.js, Tailwind CSS, JavaScript, Vercel",
+      link: "https://interior-studio-website-psi.vercel.app/",
+      btnText: "Live Preview ↗",
+    },
   ];
 
   return (
@@ -247,7 +267,7 @@ function Projects() {
                       rel="noopener noreferrer"
                       className="projectBtn projectBtnGold"
                     >
-                      View Project
+                      {project.btnText || "View Project"}
                     </a>
                   </div>
                 )}

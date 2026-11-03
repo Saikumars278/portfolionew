@@ -49,12 +49,12 @@ function About() {
 
           <div className="aboutStatsGrid">
             <div className="statCard">
-              <h3>2+</h3>
+              <h3>3+</h3>
               <p>Frontend Projects</p>
             </div>
 
             <div className="statCard">
-              <h3>2+</h3>
+              <h3>3+</h3>
               <p>Backend Projects</p>
             </div>
 
