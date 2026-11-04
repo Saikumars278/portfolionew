@@ -138,7 +138,7 @@ function Projects() {
       userBtnText: "Live Demo ↗",
       adminCreds: {
         username: "admin",
-        password: "admin@123",
+        password: "admin",
       },
     },
 
