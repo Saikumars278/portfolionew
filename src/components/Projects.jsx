@@ -133,7 +133,9 @@ function Projects() {
       ],
       tech: "Next.js, Django, Django REST Framework, MySQL, JWT Authentication, Tailwind CSS",
       dualButtons: true,
-      adminLink: "https://github.com/Saikumars278",
+      adminLink: "https://shop-crm-frontend.vercel.app/",
+      userLink: "https://shop-crm-frontend.vercel.app/",
+      userBtnText: "Live Demo ↗",
       adminCreds: {
         username: "admin",
         password: "admin@123",
@@ -244,7 +246,7 @@ function Projects() {
                               )
                             }
                           >
-                            👤 User Panel
+                            {project.userBtnText || "👤 User Panel"}
                           </button>
                         ) : (
                           <a
@@ -253,7 +255,7 @@ function Projects() {
                             rel="noopener noreferrer"
                             className="projectBtn projectBtnOutline"
                           >
-                            👤 User Panel
+                            {project.userBtnText || "👤 User Panel"}
                           </a>
                         )
                       )}
